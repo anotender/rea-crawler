@@ -1,0 +1,19 @@
+crawler:
+  vendors:
+  - name: 'Morizon'
+    base_url: 'https://www.morizon.pl'
+    offer_url_xpath: '//*[@id="contentPage"]/div/div/div/div/section/div/div/div/div/section/header/a/@href'
+    address_xpath: '//*[@id="contentPage"]/div[3]/div/div[1]/article/section[1]/div/header/section/div/div[1]/h1/strong/text()'
+    image_xpath: '//*[@id="imageBig"]/@src'
+    area_xpath: '//*[@id="contentPage"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[4]/em/text()'
+    price_xpath: '//*[@id="contentPage"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[1]/em/text()'
+    number_of_rooms_xpath: '//*[@id="contentPage"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[5]/em/text()'
+    page_param: '?page='
+    pages_to_visit: 5
+    concurrent_requests_count: 5
+    request_delay: 60000
+    pages:
+    - '/do-wynajecia/domy/najnowsze/'
+    - '/do-wynajecia/mieszkania/najnowsze/'
+    - '/mieszkania/najnowsze/'
+    - '/domy/najnowsze/'
