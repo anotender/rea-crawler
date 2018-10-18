@@ -1,7 +1,8 @@
 package pl.edu.agh.rea.crawler.domain.model
 
 data class Offer(
-        val title: String,
-        val price: String,
+        val offerUrl: String,
+        val address: String,
         val imageUrl: String,
-        val offerUrl: String)
+        val price: String,
+        val numberOfRooms: Int)
