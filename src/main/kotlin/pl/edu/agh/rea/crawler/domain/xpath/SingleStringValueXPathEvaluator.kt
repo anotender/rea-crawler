@@ -12,6 +12,7 @@ class SingleStringValueXPathEvaluator : XPathEvaluator<String> {
                 .map { it.toString() }
                 .firstOrNull()
                 .orEmpty()
+                .trim()
     }
 
 }
