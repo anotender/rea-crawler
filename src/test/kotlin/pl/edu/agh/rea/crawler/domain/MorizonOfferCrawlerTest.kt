@@ -1,6 +1,6 @@
 package pl.edu.agh.rea.crawler.domain
 
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.BDDAssertions.then
 import org.junit.Test
 import pl.edu.agh.rea.crawler.domain.model.Offer

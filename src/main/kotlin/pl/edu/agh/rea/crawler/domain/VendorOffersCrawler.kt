@@ -1,8 +1,8 @@
 package pl.edu.agh.rea.crawler.domain
 
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.coroutineScope
-import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfigurationProperties
 import pl.edu.agh.rea.crawler.domain.model.Offer
 import java.net.URL
@@ -29,7 +29,7 @@ class VendorOffersCrawler(private val vendorConfigurationProperties: VendorConfi
     }
 
     private suspend fun getOffer(offerUrl: String): Offer {
-        return OfferCrawler(vendorConfigurationProperties, buildFullUrl(offerUrl)).fetch()
+        return OfferCrawler(vendorConfigurationProperties, URL(offerUrl)).fetch()
     }
 
     private fun buildFullUrl(relativeUrl: String): URL {

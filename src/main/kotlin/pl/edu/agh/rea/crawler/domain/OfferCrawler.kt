@@ -12,8 +12,8 @@ import java.net.URL
 class OfferCrawler(private val vendorConfigurationProperties: VendorConfigurationProperties,
                    private val offerUrl: URL,
                    private val htmlCleaner: HtmlCleaner = HtmlCleaner(),
-                   private val singleStringValueXPathEvaluator: XPathEvaluator<String> = SingleStringValueXPathEvaluator(),
-                   private val singleIntValueXPathEvaluator: XPathEvaluator<Int> = SingleIntValueXPathEvaluator()) : Crawler<Offer> {
+                   private val singleStringValueXPathEvaluator: XPathEvaluator<String?> = SingleStringValueXPathEvaluator(),
+                   private val singleIntValueXPathEvaluator: XPathEvaluator<Int?> = SingleIntValueXPathEvaluator()) : Crawler<Offer> {
 
     override suspend fun fetch(): Offer {
         val offerPage = htmlCleaner.clean(offerUrl)
@@ -27,11 +27,11 @@ class OfferCrawler(private val vendorConfigurationProperties: VendorConfiguratio
     }
 
     private fun getStringValue(tagNode: TagNode, xPath: String): String {
-        return singleStringValueXPathEvaluator.evaluate(tagNode, xPath)
+        return singleStringValueXPathEvaluator.evaluate(tagNode, xPath).orEmpty().trim()
     }
 
     private fun getIntValue(tagNode: TagNode, xPath: String): Int {
-        return singleIntValueXPathEvaluator.evaluate(tagNode, xPath)
+        return singleIntValueXPathEvaluator.evaluate(tagNode, xPath) ?: 0
     }
 
 }

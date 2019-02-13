@@ -1,6 +1,6 @@
 package pl.edu.agh.rea.crawler.configuration.scheduler
 
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.runBlocking
 import org.springframework.context.annotation.Configuration
 import pl.edu.agh.rea.crawler.configuration.properties.CrawlerConfigurationProperties
 import pl.edu.agh.rea.crawler.domain.Crawler
@@ -16,12 +16,10 @@ class SchedulerConfiguration(private val crawlerConfigurationProperties: Crawler
     private val threadPool = Executors.newScheduledThreadPool(crawlerConfigurationProperties.vendors.size)
 
     @PostConstruct
-    private fun scheduleTasks() {
-        crawlerConfigurationProperties
-                .vendors
-                .map { VendorOffersCrawler(it) }
-                .forEach(this::scheduleCrawler)
-    }
+    private fun scheduleTasks() = crawlerConfigurationProperties
+            .vendors
+            .map(::VendorOffersCrawler)
+            .forEach(this::scheduleCrawler)
 
     private fun scheduleCrawler(crawler: Crawler<List<Offer>>) {
         threadPool.schedule({
