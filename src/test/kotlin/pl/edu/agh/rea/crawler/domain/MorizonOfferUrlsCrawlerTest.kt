@@ -4,19 +4,20 @@ import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.BDDAssertions.then
 import org.junit.Test
 
-class MorizonOfferUrlsCrawlerTest : OfferUrlsCrawlerBaseTest() {
+class MorizonOfferUrlsCrawlerTest : BaseCrawlerTest() {
 
-    override fun getOfferUrlXpath(): String {
-        return "//*[@id=\"contentPage\"]/div/div/div/div/section/div/div/div/div/section/header/a/@href"
+    companion object {
+        private const val VENDOR_NAME: String = "Morizon";
     }
 
     @Test
     fun shouldReturnListOfUrlsForGivenPage() {
         //given
-        val offerUrlsCrawler = prepareOfferUrlCrawler("/morizon/offer_urls_page.html")
+        val offerUrlsCrawler = getOfferUrlsCrawler(VENDOR_NAME)
+        val offerUrlsPageUrl = this.javaClass.getResource("/morizon/offer_urls_page.html").toString()
 
         //when
-        val result = runBlocking { offerUrlsCrawler.fetch() }
+        val result = runBlocking { offerUrlsCrawler.fetch(offerUrlsPageUrl) }
 
         //then
         then(result)
@@ -32,10 +33,11 @@ class MorizonOfferUrlsCrawlerTest : OfferUrlsCrawlerBaseTest() {
     @Test
     fun shouldReturnEmptyListForPageWithNoOffers() {
         //given
-        val offerUrlsCrawler = prepareOfferUrlCrawler("/morizon/offer_urls_empty_page.html")
+        val offerUrlsCrawler = getOfferUrlsCrawler(VENDOR_NAME)
+        val offerUrlsPageUrl = this.javaClass.getResource("/morizon/offer_urls_empty_page.html").toString()
 
         //when
-        val result = runBlocking { offerUrlsCrawler.fetch() }
+        val result = runBlocking { offerUrlsCrawler.fetch(offerUrlsPageUrl) }
 
         //then
         then(result)

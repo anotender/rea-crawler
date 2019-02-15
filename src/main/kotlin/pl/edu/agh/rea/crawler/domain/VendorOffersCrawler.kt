@@ -5,12 +5,12 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfigurationProperties
 import pl.edu.agh.rea.crawler.domain.model.Offer
-import java.net.URL
 
 class VendorOffersCrawler(private val vendorConfigurationProperties: VendorConfigurationProperties) : Crawler<List<Offer>> {
 
-    override suspend fun fetch(): List<Offer> = coroutineScope {
+    override suspend fun fetch(url: String): List<Offer> = coroutineScope {
         return@coroutineScope vendorConfigurationProperties.pages
+                .map { url + it }
                 .map { async { getOfferUrls(it) } }
                 .flatMap { it.await() }
                 .chunked(vendorConfigurationProperties.concurrentRequestsCount.toInt())
@@ -18,7 +18,7 @@ class VendorOffersCrawler(private val vendorConfigurationProperties: VendorConfi
     }
 
     private suspend fun getOfferUrls(url: String): List<String> {
-        return OfferUrlsCrawler(vendorConfigurationProperties, buildFullUrl(url)).fetch()
+        return OfferUrlsCrawler(vendorConfigurationProperties).fetch(url)
     }
 
     private suspend fun executeBatchOfferCrawling(offerUrls: List<String>): List<Offer> = coroutineScope {
@@ -29,11 +29,7 @@ class VendorOffersCrawler(private val vendorConfigurationProperties: VendorConfi
     }
 
     private suspend fun getOffer(offerUrl: String): Offer {
-        return OfferCrawler(vendorConfigurationProperties, URL(offerUrl)).fetch()
-    }
-
-    private fun buildFullUrl(relativeUrl: String): URL {
-        return URL(vendorConfigurationProperties.baseUrl + relativeUrl)
+        return OfferCrawler(vendorConfigurationProperties).fetch(offerUrl)
     }
 
 }

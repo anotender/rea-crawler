@@ -3,9 +3,8 @@ package pl.edu.agh.rea.crawler.configuration.scheduler
 import kotlinx.coroutines.runBlocking
 import org.springframework.context.annotation.Configuration
 import pl.edu.agh.rea.crawler.configuration.properties.CrawlerConfigurationProperties
-import pl.edu.agh.rea.crawler.domain.Crawler
+import pl.edu.agh.rea.crawler.configuration.properties.VendorConfigurationProperties
 import pl.edu.agh.rea.crawler.domain.VendorOffersCrawler
-import pl.edu.agh.rea.crawler.domain.model.Offer
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import javax.annotation.PostConstruct
@@ -18,12 +17,12 @@ class SchedulerConfiguration(private val crawlerConfigurationProperties: Crawler
     @PostConstruct
     private fun scheduleTasks() = crawlerConfigurationProperties
             .vendors
-            .map(::VendorOffersCrawler)
             .forEach(this::scheduleCrawler)
 
-    private fun scheduleCrawler(crawler: Crawler<List<Offer>>) {
+    private fun scheduleCrawler(vendorConfigurationProperties: VendorConfigurationProperties) {
         threadPool.schedule({
-            val offers = runBlocking { crawler.fetch() }
+            val crawler = VendorOffersCrawler(vendorConfigurationProperties)
+            val offers = runBlocking { crawler.fetch(vendorConfigurationProperties.baseUrl) }
             println(offers)
         }, 4, TimeUnit.HOURS)
     }
