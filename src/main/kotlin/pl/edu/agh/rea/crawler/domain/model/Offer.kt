@@ -5,4 +5,5 @@ data class Offer(
         val address: String,
         val imageUrl: String,
         val price: String,
+        val area: String,
         val numberOfRooms: Int)
