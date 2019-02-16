@@ -1,10 +1,8 @@
 package pl.edu.agh.rea.crawler.configuration.scheduler
 
-import kotlinx.coroutines.runBlocking
 import org.springframework.context.annotation.Configuration
 import pl.edu.agh.rea.crawler.configuration.properties.CrawlerConfigurationProperties
-import pl.edu.agh.rea.crawler.configuration.properties.VendorConfigurationProperties
-import pl.edu.agh.rea.crawler.domain.VendorOffersCrawler
+import pl.edu.agh.rea.crawler.configuration.scheduler.job.VendorCrawlerJob
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import javax.annotation.PostConstruct
@@ -17,14 +15,11 @@ class SchedulerConfiguration(private val crawlerConfigurationProperties: Crawler
     @PostConstruct
     private fun scheduleTasks() = crawlerConfigurationProperties
             .vendors
-            .forEach(this::scheduleCrawler)
+            .map(::VendorCrawlerJob)
+            .forEach(this::scheduleJob)
 
-    private fun scheduleCrawler(vendorConfigurationProperties: VendorConfigurationProperties) {
-        threadPool.schedule({
-            val crawler = VendorOffersCrawler(vendorConfigurationProperties)
-            val offers = runBlocking { crawler.fetch(vendorConfigurationProperties.baseUrl) }
-            println(offers)
-        }, 4, TimeUnit.HOURS)
+    private fun scheduleJob(job: VendorCrawlerJob) {
+        threadPool.schedule(job, 4, TimeUnit.HOURS)
     }
 
 }
