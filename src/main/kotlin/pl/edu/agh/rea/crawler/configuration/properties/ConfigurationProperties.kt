@@ -1,42 +1,25 @@
 package pl.edu.agh.rea.crawler.configuration.properties
 
-import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.context.annotation.Configuration
+import pl.edu.agh.rea.crawler.domain.model.OfferType
+import pl.edu.agh.rea.crawler.domain.model.PropertyType
 
-@Configuration
-@ConfigurationProperties(prefix = "crawler")
-class CrawlerConfigurationProperties {
+data class VendorConfigurationProperties(
+        val name: String,
+        val baseUrl: String,
+        val offerUrlXpath: String,
+        val addressXpath: String,
+        val imageXpath: String,
+        val areaXpath: String,
+        val priceXpath: String,
+        val numberOfRoomsXpath: String,
+        val pageParam: String,
+        val pagesToVisit: Number,
+        val concurrentRequestsCount: Number,
+        val requestDelay: Number,
+        val pages: List<PageConfigurationProperties>)
 
-    lateinit var vendors: List<VendorConfigurationProperties>
-
-}
-
-class VendorConfigurationProperties {
-
-    lateinit var name: String
-
-    lateinit var baseUrl: String
-
-    lateinit var offerUrlXpath: String
-
-    lateinit var addressXpath: String
-
-    lateinit var imageXpath: String
-
-    lateinit var areaXpath: String
-
-    lateinit var priceXpath: String
-
-    lateinit var numberOfRoomsXpath: String
-
-    lateinit var pageParam: String
-
-    lateinit var pagesToVisit: Number
-
-    lateinit var concurrentRequestsCount: Number
-
-    lateinit var requestDelay: Number
-
-    lateinit var pages: List<String>
-
-}
+data class PageConfigurationProperties(
+        val offerType: OfferType,
+        val propertyType: PropertyType,
+        val url: String
+)

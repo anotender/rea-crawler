@@ -2,21 +2,22 @@ package pl.edu.agh.rea.crawler.configuration.scheduler.job
 
 import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
-import pl.edu.agh.rea.crawler.configuration.properties.VendorConfigurationProperties
+import org.springframework.stereotype.Component
+import pl.edu.agh.rea.crawler.configuration.provider.ConfigurationProvider
 import pl.edu.agh.rea.crawler.domain.VendorOffersCrawler
 
-class VendorCrawlerJob(private val vendorConfigurationProperties: VendorConfigurationProperties) : Runnable {
+@Component
+class VendorCrawlerJob(private val configurationProvider: ConfigurationProvider,
+                       private val vendorOffersCrawler: VendorOffersCrawler) : Runnable {
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(VendorCrawlerJob::class.java)
     }
 
-    private val crawler = VendorOffersCrawler(vendorConfigurationProperties)
-
     override fun run() {
-        LOGGER.info("[${vendorConfigurationProperties.name}] Started crawling")
-        val offers = runBlocking { crawler.fetch(vendorConfigurationProperties.baseUrl) }
-        LOGGER.info("[${vendorConfigurationProperties.name}] Fetched ${offers.size} offers")
+        LOGGER.info("Started crawling")
+        val offers = runBlocking { vendorOffersCrawler.fetch(configurationProvider.vendorConfigurationProperties.baseUrl) }
+        LOGGER.info("Fetched ${offers.size} offers")
     }
 
 }
