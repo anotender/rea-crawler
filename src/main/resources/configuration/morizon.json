@@ -1,0 +1,36 @@
+{
+  "name": "Morizon",
+  "baseUrl": "https://www.morizon.pl",
+  "offerUrlXpath": "//*[@id=\"contentPage\"]/div/div/div/div/section/div/div/div/div/section/header/a/@href",
+  "addressXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/div/div[1]/h1/strong/text()",
+  "imageXpath": "//*[@id=\"imageBig\"]/@src",
+  "areaXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[4]/em/text()",
+  "priceXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[1]/em/text()",
+  "numberOfRoomsXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[5]/em/text()",
+  "pageParam": "?page=",
+  "pagesToVisit": 5,
+  "concurrentRequestsCount": 10,
+  "requestDelay": 30000,
+  "pages": [
+    {
+      "offerType": "RENT",
+      "propertyType": "HOUSE",
+      "url": "/do-wynajecia/domy/najnowsze/"
+    },
+    {
+      "offerType": "RENT",
+      "propertyType": "FLAT",
+      "url": "/do-wynajecia/mieszkania/najnowsze/"
+    },
+    {
+      "offerType": "SELL",
+      "propertyType": "FLAT",
+      "url": "/mieszkania/najnowsze/"
+    },
+    {
+      "offerType": "SELL",
+      "propertyType": "HOUSE",
+      "url": "/domy/najnowsze/"
+    }
+  ]
+}
