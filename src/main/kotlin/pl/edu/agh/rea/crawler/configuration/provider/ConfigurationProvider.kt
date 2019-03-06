@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfigurationProperties
 import java.net.URL
-import javax.annotation.PostConstruct
 import kotlin.system.exitProcess
 
 @Component
@@ -17,10 +16,9 @@ class ConfigurationProvider(@Value("\${vendor}") private val vendor: String) {
         private val LOGGER = LoggerFactory.getLogger(ConfigurationProvider::class.java)
     }
 
-    lateinit var vendorConfigurationProperties: VendorConfigurationProperties
+    val vendorConfigurationProperties: VendorConfigurationProperties = readVendorConfigurationProperties()
 
-    @PostConstruct
-    private fun readVendorConfigurationProperties() {
+    private fun readVendorConfigurationProperties(): VendorConfigurationProperties {
         val configurationFileUrl = getConfigurationFileUrlForVendor()
 
         if (configurationFileUrl == null) {
@@ -31,8 +29,9 @@ class ConfigurationProvider(@Value("\${vendor}") private val vendor: String) {
         }
 
         LOGGER.info("Reading configuration for vendor $vendor from $configurationFileUrl")
-        vendorConfigurationProperties = jacksonObjectMapper().readValue(configurationFileUrl)
+        val vendorConfigurationProperties: VendorConfigurationProperties = jacksonObjectMapper().readValue(configurationFileUrl)
         LOGGER.info("The config is: $vendorConfigurationProperties")
+        return vendorConfigurationProperties
     }
 
     private fun getConfigurationFileUrlForVendor(): URL? {
