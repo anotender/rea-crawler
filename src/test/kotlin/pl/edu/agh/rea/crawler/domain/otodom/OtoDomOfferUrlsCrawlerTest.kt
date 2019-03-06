@@ -1,4 +1,4 @@
-package pl.edu.agh.rea.crawler.domain.morizon
+package pl.edu.agh.rea.crawler.domain.otodom
 
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.BDDAssertions.then
@@ -6,7 +6,7 @@ import org.junit.Test
 import pl.edu.agh.rea.crawler.domain.BaseCrawlerTest
 import pl.edu.agh.rea.crawler.domain.OfferUrlsCrawler
 
-class MorizonOfferUrlsCrawlerTest : BaseCrawlerTest("morizon") {
+class OtoDomOfferUrlsCrawlerTest : BaseCrawlerTest("otodom") {
 
     @Test
     fun shouldReturnListOfUrlsForGivenPage() {
@@ -20,11 +20,12 @@ class MorizonOfferUrlsCrawlerTest : BaseCrawlerTest("morizon") {
         //then
         then(result)
                 .isNotNull
-                .hasSize(3)
+                .hasSize(4)
                 .containsExactly(
-                        "https://www.morizon.pl/oferta/sprzedaz-mieszkanie-krakow-mistrzejowice-73m2-mzn2032058697",
-                        "https://www.morizon.pl/oferta/sprzedaz-mieszkanie-krakow-grzegorzki-34m2-mzn2032058695",
-                        "https://www.morizon.pl/oferta/sprzedaz-mieszkanie-bytom-szombierki-zabrzanska-65m2-mzn2032057520"
+                        "https://www.otodom.pl/oferta/funkcjonalna-kawalerka-na-blisko-metra-slodowiec-ID3WVxi.html#14fcfe9f8e",
+                        "https://www.otodom.pl/oferta/kawalerka-wysoki-standard-ul-pilotow-eng-ID3WVvo.html#14fcfe9f8e",
+                        "https://www.otodom.pl/oferta/nowe-ladne-2-pok-woronicza-przy-mordorze-i-metrze-ID3WVv4.html#14fcfe9f8e",
+                        "https://www.otodom.pl/oferta/luksusowe-piekne-mieszkanie-z-tarasem-na-mokotowie-ID3GqY8.html#14fcfe9f8e"
                 )
     }
 

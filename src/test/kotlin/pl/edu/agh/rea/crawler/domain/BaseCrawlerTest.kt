@@ -9,6 +9,6 @@ abstract class BaseCrawlerTest(private val vendorName: String) {
 
     protected fun getOfferUrlsCrawler(): OfferUrlsCrawler = OfferUrlsCrawler(ConfigurationProvider(vendorName), HtmlCleaner())
 
-    protected fun getResourceUrl(resourcePath: String): String = this.javaClass.getResource(resourcePath).toString()
+    protected fun getResourceUrl(resourceName: String): String = this.javaClass.getResource("/$vendorName/$resourceName").toString()
 
 }

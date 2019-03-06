@@ -1,0 +1,36 @@
+{
+  "name": "otodom",
+  "baseUrl": "https://www.otodom.pl",
+  "offerUrlXpath": "//*[@id=\"body-container\"]/div/div/div[1]/div/article/@data-url",
+  "addressXpath": "//*[@id=\"root\"]/div/article/div[1]/header/div[1]/div/div/a",
+  "imageXpath": "//*[@id=\"root\"]/div/article/section/div[1]/div/div[1]/div/div[2]/div/div[2]/div/picture/img/@src",
+  "areaXpath": "//*[@id=\"root\"]/div/article/div[2]/div[1]/section[1]/div/ul/li[starts-with(text(), \"Powierzchnia\")]/strong",
+  "priceXpath": "//*[@id=\"root\"]/div/article/div[1]/header/div[3]/div[1]",
+  "numberOfRoomsXpath": "//*[@id=\"root\"]/div/article/div[2]/div[1]/section[1]/div/ul/li[starts-with(text(), \"Liczba pokoi\")]/strong",
+  "pageParam": "&page=",
+  "pagesToVisit": 5,
+  "concurrentRequestsCount": 10,
+  "requestDelay": 30000,
+  "pages": [
+    {
+      "offerType": "RENT",
+      "propertyType": "HOUSE",
+      "url": "/wynajem/dom/?nrAdsPerPage=72"
+    },
+    {
+      "offerType": "RENT",
+      "propertyType": "FLAT",
+      "url": "/wynajem/mieszkanie/?nrAdsPerPage=72"
+    },
+    {
+      "offerType": "SELL",
+      "propertyType": "FLAT",
+      "url": "/sprzedaz/mieszkanie/?nrAdsPerPage=72"
+    },
+    {
+      "offerType": "SELL",
+      "propertyType": "HOUSE",
+      "url": "/sprzedaz/dom/?nrAdsPerPage=72"
+    }
+  ]
+}

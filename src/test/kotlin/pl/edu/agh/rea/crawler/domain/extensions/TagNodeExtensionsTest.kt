@@ -1,11 +1,11 @@
-package pl.edu.agh.rea.crawler.domain.htmlcleaner.extensions
+package pl.edu.agh.rea.crawler.domain.extensions
 
 import org.assertj.core.api.BDDAssertions.then
 import org.htmlcleaner.HtmlCleaner
-import org.htmlcleaner.TagNode
 import org.junit.Test
+import org.w3c.dom.Document
 
-class TagNodeExtensionsTest {
+class DocumentExtensionsTest {
 
     @Test
     fun shouldReturnListOfStringValuesWhenGivenXPathExists() {
@@ -49,7 +49,7 @@ class TagNodeExtensionsTest {
     }
 
     @Test
-    fun shouldReturnNullStringValueWhenGivenXPathDoesNotExist() {
+    fun shouldReturnEmptyStringWhenGivenXPathDoesNotExist() {
         //given
         val extensionsPage = getExtensionsTestPage()
 
@@ -57,7 +57,9 @@ class TagNodeExtensionsTest {
         val stringValue = extensionsPage.getSingleStringValue("//p[@id = 'not_exist']/text()")
 
         //then
-        then(stringValue).isNull()
+        then(stringValue)
+                .isNotNull()
+                .isEmpty()
     }
 
     @Test
@@ -98,9 +100,9 @@ class TagNodeExtensionsTest {
         then(intValue).isNull()
     }
 
-    private fun getExtensionsTestPage(): TagNode {
+    private fun getExtensionsTestPage(): Document {
         val extensionsPageUrl = this.javaClass.getResource("/html_cleaner/extensions.html").toString()
-        return HtmlCleaner().cleanStringUrl(extensionsPageUrl)
+        return HtmlCleaner().cleanToDocument(extensionsPageUrl)
     }
 
 }

@@ -4,8 +4,8 @@ import org.htmlcleaner.HtmlCleaner
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import pl.edu.agh.rea.crawler.configuration.provider.ConfigurationProvider
-import pl.edu.agh.rea.crawler.domain.htmlcleaner.extensions.cleanStringUrl
-import pl.edu.agh.rea.crawler.domain.htmlcleaner.extensions.getMultipleStringValue
+import pl.edu.agh.rea.crawler.domain.extensions.cleanToDocument
+import pl.edu.agh.rea.crawler.domain.extensions.getMultipleStringValue
 
 @Component
 class OfferUrlsCrawler(private val configurationProvider: ConfigurationProvider,
@@ -18,7 +18,7 @@ class OfferUrlsCrawler(private val configurationProvider: ConfigurationProvider,
     override suspend fun fetch(url: String): List<String> {
         LOGGER.info("Crawling offer urls from url $url")
         return htmlCleaner
-                .cleanStringUrl(url)
+                .cleanToDocument(url)
                 .getMultipleStringValue(configurationProvider.vendorConfigurationProperties.offerUrlXpath)
     }
 
