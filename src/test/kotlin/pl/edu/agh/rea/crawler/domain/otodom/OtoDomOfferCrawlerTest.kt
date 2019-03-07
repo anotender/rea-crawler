@@ -20,10 +20,10 @@ class OtoDomOfferCrawlerTest : BaseCrawlerTest("otodom") {
         //then
         then(offer).isEqualTo(Offer(
                 offerPageUrl,
-                "Krak&oacute;w, Grzeg&oacute;rzki",
+                "Kraków, Grzegórzki",
                 "https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6InBpZ3dnanFqdnB1cTMtQVBMIiwidyI6W3siZm4iOiJqMWozbzEzbTZiZ24xLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.Gfzf0C1fvKNFgd25jW1PONZ8bIe_PL2wRX8P7P3e4So/image;s=1280x1024;q=80",
-                "2 100 zł",
-                "41 m&sup2;",
+                2100.0,
+                41.0,
                 2
         ))
     }

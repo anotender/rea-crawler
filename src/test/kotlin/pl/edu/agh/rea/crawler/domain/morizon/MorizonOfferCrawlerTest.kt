@@ -22,8 +22,8 @@ class MorizonOfferCrawlerTest : BaseCrawlerTest("morizon") {
                 offerPageUrl,
                 "Warszawa, Wola",
                 "https://img2.staticmorizon.com.pl/thumbnail/aHR0cDovL2ltZy5tb3Jpem9uLnBsL3ptazc0OTMvOS96bWs3NDkzX21zXzI2NDglMjUyRjYxNjYlMjUyRk9NU18xLmpwZyN2PTFfMTE1ODMwMjAyMA==/832/468/2/kawalerka-na-sprzedaz-warszawa-wola-33-m-morizon-pl-3776.jpg",
-                "290 000 zł",
-                "32,50 m²",
+                290000.0,
+                32.5,
                 1
         ))
     }

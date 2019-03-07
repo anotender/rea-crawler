@@ -19,10 +19,10 @@ fun Document.getMultipleStringValue(xPath: String): List<String> {
     return stringValues
 }
 
-fun Document.getSingleStringValue(xPath: String): String? {
+fun Document.getSingleStringValue(xPath: String): String {
     return xPathFactory.newXPath().evaluate(xPath, this, XPathConstants.STRING) as String
 }
 
 fun Document.getSingleIntValue(xPath: String): Int? {
-    return getSingleStringValue(xPath)?.toIntOrNull()
+    return getSingleStringValue(xPath).toIntOrNull()
 }
