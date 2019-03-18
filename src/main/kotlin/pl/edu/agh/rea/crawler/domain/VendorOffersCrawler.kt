@@ -7,11 +7,14 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import pl.edu.agh.rea.crawler.configuration.provider.ConfigurationProvider
 import pl.edu.agh.rea.crawler.domain.model.Offer
+import pl.edu.agh.rea.crawler.domain.store.VisitedSitesStore
+import java.util.*
 
 @Component
 class VendorOffersCrawler(private val configurationProvider: ConfigurationProvider,
                           private val offerCrawler: OfferCrawler,
-                          private val offerUrlsCrawler: OfferUrlsCrawler) : Crawler<List<Offer>> {
+                          private val offerUrlsCrawler: OfferUrlsCrawler,
+                          private val visitedSitesStore: VisitedSitesStore) : Crawler<List<Offer>> {
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(VendorOffersCrawler::class.java)
@@ -39,7 +42,13 @@ class VendorOffersCrawler(private val configurationProvider: ConfigurationProvid
         delay(configurationProvider.vendorConfigurationProperties.requestDelay.toLong())
         LOGGER.info("Crawling ${offerUrls.size} offers from urls $offerUrls")
         return@coroutineScope offerUrls
-                .map { async { offerCrawler.fetch(it) } }
+                .filter { visitedSitesStore.contains(it).not() }
+                .map {
+                    async {
+                        visitedSitesStore.put(it, Date())
+                        offerCrawler.fetch(it)
+                    }
+                }
                 .map { it.await() }
     }
 

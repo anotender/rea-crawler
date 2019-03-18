@@ -16,10 +16,12 @@ class OfferUrlsCrawler(private val configurationProvider: ConfigurationProvider,
     }
 
     override suspend fun fetch(url: String): List<String> {
-        LOGGER.info("Crawling offer urls from url $url")
-        return htmlCleaner
+        LOGGER.info("Scraping offer urls from url $url")
+        val offerUrls: List<String> = htmlCleaner
                 .cleanToDocument(url)
                 .getMultipleStringValue(configurationProvider.vendorConfigurationProperties.offerUrlXpath)
+        LOGGER.info("Scraped ${offerUrls.size} offer urls")
+        return offerUrls
     }
 
 }

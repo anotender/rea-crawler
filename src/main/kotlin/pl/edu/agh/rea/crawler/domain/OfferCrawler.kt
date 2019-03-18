@@ -19,17 +19,21 @@ class OfferCrawler(private val configurationProvider: ConfigurationProvider,
     }
 
     override suspend fun fetch(url: String): Offer {
-        LOGGER.info("Crawling offer from url $url")
+        LOGGER.info("Scraping offer from url $url")
         val offerPage = htmlCleaner.cleanToDocument(url)
-        return Offer(
-                url,
-                getStringValue(offerPage, configurationProvider.vendorConfigurationProperties.addressXpath),
-                getStringValue(offerPage, configurationProvider.vendorConfigurationProperties.imageXpath),
-                getDoubleValue(offerPage, configurationProvider.vendorConfigurationProperties.priceXpath),
-                getDoubleValue(offerPage, configurationProvider.vendorConfigurationProperties.areaXpath),
-                getIntValue(offerPage, configurationProvider.vendorConfigurationProperties.numberOfRoomsXpath)
-        )
+        val offer = buildOffer(url, offerPage)
+        LOGGER.info("Scraped offer from url $url successfully")
+        return offer
     }
+
+    private fun buildOffer(url: String, offerPage: Document): Offer = Offer(
+            url,
+            getStringValue(offerPage, configurationProvider.vendorConfigurationProperties.addressXpath),
+            getStringValue(offerPage, configurationProvider.vendorConfigurationProperties.imageXpath),
+            getDoubleValue(offerPage, configurationProvider.vendorConfigurationProperties.priceXpath),
+            getDoubleValue(offerPage, configurationProvider.vendorConfigurationProperties.areaXpath),
+            getIntValue(offerPage, configurationProvider.vendorConfigurationProperties.numberOfRoomsXpath)
+    )
 
     private fun getIntValue(document: Document, xPath: String): Int {
         return getStringValueWithoutNonNumericCharacters(document, xPath).toInt()
