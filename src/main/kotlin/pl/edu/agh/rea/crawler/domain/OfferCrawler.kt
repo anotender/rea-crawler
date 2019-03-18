@@ -35,20 +35,25 @@ class OfferCrawler(private val configurationProvider: ConfigurationProvider,
             getIntValue(offerPage, configurationProvider.vendorConfigurationProperties.numberOfRoomsXpath)
     )
 
-    private fun getIntValue(document: Document, xPath: String): Int {
-        return getStringValueWithoutNonNumericCharacters(document, xPath).toInt()
+    private fun getIntValue(document: Document, xPath: String): Int? {
+        return getStringValueWithoutNonNumericCharacters(document, xPath)?.toInt()
     }
 
-    private fun getDoubleValue(document: Document, xPath: String): Double {
-        return getStringValueWithoutNonNumericCharacters(document, xPath).toDouble()
+    private fun getDoubleValue(document: Document, xPath: String): Double? {
+        return getStringValueWithoutNonNumericCharacters(document, xPath)?.toDouble()
     }
 
-    private fun getStringValueWithoutNonNumericCharacters(document: Document, xPath: String): String {
-        return getStringValue(document, xPath).replace(Regex("[^0-9.,]"), "").replace(',', '.')
+    private fun getStringValueWithoutNonNumericCharacters(document: Document, xPath: String): String? {
+        return getStringValue(document, xPath)
+                ?.replace(Regex("[^0-9.,]"), "")
+                ?.replace(',', '.')
     }
 
-    private fun getStringValue(document: Document, xPath: String): String {
-        return StringEscapeUtils.unescapeHtml4(document.getSingleStringValue(xPath)).trim()
+    private fun getStringValue(document: Document, xPath: String): String? {
+        val stringValue: String = StringEscapeUtils.unescapeHtml4(document.getSingleStringValue(xPath))
+                .trim()
+                .replace(Regex("\\s+"), " ")
+        return if (stringValue.isEmpty()) null else stringValue
     }
 
 }
