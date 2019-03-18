@@ -48,6 +48,22 @@ class MorizonOfferCrawlerTest : BaseCrawlerTest("morizon") {
                     4999.0,
                     100.0,
                     null
+            ),
+            getResourceUrl("offer_page6.html") to Offer(
+                    getResourceUrl("offer_page6.html"),
+                    "Kraków, Stare Miasto, al. Juliusza Słowackiego",
+                    "https://img1.staticmorizon.com.pl/thumbnail/aHR0cDovL2ltZy5tb3Jpem9uLnBsL2FwYXJ0aDEvMi9hcGFydGgxX213Xzc1JTI1MkY3NTUxJTI1MkZPTVdfMS5qcGcjdj0xXzEyMzI3OTYzODU=/832/468/2/mieszkanie-do-wynajecia-krakow-stare-miasto-50-m-morizon-pl.jpg",
+                    1900.0,
+                    50.0,
+                    2
+            ),
+            getResourceUrl("offer_page7.html") to Offer(
+                    getResourceUrl("offer_page7.html"),
+                    "Gdańsk, Morena, Piekarnicza",
+                    "https://img2.staticmorizon.com.pl/thumbnail/aHR0cDovL2ltZy5tb3Jpem9uLnBsL2hvbWVicm9rZXIvNi9ob21lYnJva2VyX213XzM4NzgxN18xLmpwZyN2PTFfMTIzMjc5NjE0OA==/832/468/2/mieszkanie-do-wynajecia-gdansk-piecki-migowo-53-m-morizon-pl.jpg",
+                    1700.0,
+                    52.5,
+                    2
             )
     )
 
