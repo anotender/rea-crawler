@@ -13,9 +13,9 @@ data class VendorConfigurationProperties(
         val priceXpath: String,
         val numberOfRoomsXpath: String,
         val pageParam: String,
-        val pagesToVisit: Number,
-        val concurrentRequestsCount: Number,
-        val requestDelay: Number,
+        val pagesToVisit: Int,
+        val concurrentRequestsCount: Int,
+        val requestDelay: Long,
         val pages: List<PageConfigurationProperties>)
 
 data class PageConfigurationProperties(
