@@ -1,14 +1,11 @@
 package pl.edu.agh.rea.crawler.domain.morizon
 
-import kotlinx.coroutines.runBlocking
-import org.assertj.core.api.BDDAssertions.then
-import org.junit.Test
-import pl.edu.agh.rea.crawler.domain.BaseCrawlerTest
+import pl.edu.agh.rea.crawler.domain.BaseOfferCrawlerTest
 import pl.edu.agh.rea.crawler.domain.model.Offer
 
-class MorizonOfferCrawlerTest : BaseCrawlerTest("morizon") {
+class MorizonOfferCrawlerTest : BaseOfferCrawlerTest("morizon") {
 
-    private val offerPageUrlToExpectedOfferMap: Map<String, Offer> = mapOf(
+    override fun getTestParameters(): Map<String, Offer> = mapOf(
             getResourceUrl("offer_page1.html") to Offer(
                     getResourceUrl("offer_page1.html"),
                     "Warszawa, Wola",
@@ -66,19 +63,5 @@ class MorizonOfferCrawlerTest : BaseCrawlerTest("morizon") {
                     2
             )
     )
-
-    @Test
-    fun shouldReturnOfferWithCorrectValuesForGivenPage() {
-        for ((offerPageUrl, expectedOffer) in offerPageUrlToExpectedOfferMap) {
-            //given
-            val offerCrawler = getOfferCrawler()
-
-            //when
-            val offer = runBlocking { offerCrawler.fetch(offerPageUrl) }
-
-            //then
-            then(offer).isEqualTo(expectedOffer)
-        }
-    }
 
 }

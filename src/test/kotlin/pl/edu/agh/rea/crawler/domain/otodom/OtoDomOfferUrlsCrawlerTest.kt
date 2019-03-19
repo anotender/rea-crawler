@@ -3,10 +3,10 @@ package pl.edu.agh.rea.crawler.domain.otodom
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.BDDAssertions.then
 import org.junit.Test
-import pl.edu.agh.rea.crawler.domain.BaseCrawlerTest
+import pl.edu.agh.rea.crawler.domain.BaseOfferUrlsCrawlerTest
 import pl.edu.agh.rea.crawler.domain.OfferUrlsCrawler
 
-class OtoDomOfferUrlsCrawlerTest : BaseCrawlerTest("otodom") {
+class OtoDomOfferUrlsCrawlerTest : BaseOfferUrlsCrawlerTest("otodom") {
 
     @Test
     fun shouldReturnListOfUrlsForGivenPage() {
