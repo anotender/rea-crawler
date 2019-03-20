@@ -1,12 +1,17 @@
 package pl.edu.agh.rea.crawler.domain
 
 import kotlinx.coroutines.runBlocking
-import org.assertj.core.api.BDDAssertions.then
+import org.assertj.core.api.JUnitSoftAssertions
 import org.htmlcleaner.HtmlCleaner
+import org.junit.Rule
 import org.junit.Test
 import pl.edu.agh.rea.crawler.domain.model.Offer
 
 abstract class BaseOfferCrawlerTest(vendorName: String) : BaseCrawlerTest(vendorName) {
+
+    @Rule
+    @JvmField
+    val softly: JUnitSoftAssertions = JUnitSoftAssertions()
 
     @Test
     fun shouldReturnOfferWithCorrectValuesForGivenPage() {
@@ -18,7 +23,7 @@ abstract class BaseOfferCrawlerTest(vendorName: String) : BaseCrawlerTest(vendor
             val offer = runBlocking { offerCrawler.fetch(offerPageUrl) }
 
             //then
-            then(offer).isEqualTo(expectedOffer)
+            softly.assertThat(offer).isEqualTo(expectedOffer)
         }
     }
 
