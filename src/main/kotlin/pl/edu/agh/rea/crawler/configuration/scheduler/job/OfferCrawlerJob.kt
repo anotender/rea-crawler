@@ -4,12 +4,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import pl.edu.agh.rea.crawler.configuration.provider.ConfigurationProvider
+import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
 import pl.edu.agh.rea.crawler.domain.OfferCrawler
 import java.lang.Thread.sleep
 
 @Component
-class OfferCrawlerJob(private val configurationProvider: ConfigurationProvider,
+class OfferCrawlerJob(private val vendorConfiguration: VendorConfiguration,
                       private val urlsToScrap: MutableList<String>,
                       private val offerCrawler: OfferCrawler) : CrawlerJob {
 
@@ -26,14 +26,14 @@ class OfferCrawlerJob(private val configurationProvider: ConfigurationProvider,
                     println(offerCrawler.fetch(urlsToScrap.removeAt(i)))
                 }
             }
-            LOGGER.info("Waiting ${configurationProvider.vendorConfigurationProperties.requestDelay / 1000} [s]")
-            sleep(configurationProvider.vendorConfigurationProperties.requestDelay)
+            LOGGER.info("Waiting ${vendorConfiguration.requestDelay / 1000} [s]")
+            sleep(vendorConfiguration.requestDelay)
         }
     }
 
     private fun getNumberOfUrlsToScrap(): Int {
-        return if (configurationProvider.vendorConfigurationProperties.concurrentRequestsCount < urlsToScrap.size) {
-            configurationProvider.vendorConfigurationProperties.concurrentRequestsCount
+        return if (vendorConfiguration.concurrentRequestsCount < urlsToScrap.size) {
+            vendorConfiguration.concurrentRequestsCount
         } else {
             urlsToScrap.size
         }

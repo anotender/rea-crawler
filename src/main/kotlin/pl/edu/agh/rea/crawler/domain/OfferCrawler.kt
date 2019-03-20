@@ -5,13 +5,13 @@ import org.htmlcleaner.HtmlCleaner
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import org.w3c.dom.Document
-import pl.edu.agh.rea.crawler.configuration.provider.ConfigurationProvider
+import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
 import pl.edu.agh.rea.crawler.domain.extensions.cleanToDocument
 import pl.edu.agh.rea.crawler.domain.extensions.getSingleStringValue
 import pl.edu.agh.rea.crawler.domain.model.Offer
 
 @Component
-class OfferCrawler(private val configurationProvider: ConfigurationProvider,
+class OfferCrawler(private val vendorConfiguration: VendorConfiguration,
                    private val htmlCleaner: HtmlCleaner) : Crawler<Offer> {
 
     companion object {
@@ -28,11 +28,11 @@ class OfferCrawler(private val configurationProvider: ConfigurationProvider,
 
     private fun buildOffer(url: String, offerPage: Document): Offer = Offer(
             url,
-            getStringValue(offerPage, configurationProvider.vendorConfigurationProperties.addressXpath),
-            getStringValue(offerPage, configurationProvider.vendorConfigurationProperties.imageXpath),
-            getDoubleValue(offerPage, configurationProvider.vendorConfigurationProperties.priceXpath),
-            getDoubleValue(offerPage, configurationProvider.vendorConfigurationProperties.areaXpath),
-            getIntValue(offerPage, configurationProvider.vendorConfigurationProperties.numberOfRoomsXpath)
+            getStringValue(offerPage, vendorConfiguration.addressXpath),
+            getStringValue(offerPage, vendorConfiguration.imageXpath),
+            getDoubleValue(offerPage, vendorConfiguration.priceXpath),
+            getDoubleValue(offerPage, vendorConfiguration.areaXpath),
+            getIntValue(offerPage, vendorConfiguration.numberOfRoomsXpath)
     )
 
     private fun getIntValue(document: Document, xPath: String): Int? {

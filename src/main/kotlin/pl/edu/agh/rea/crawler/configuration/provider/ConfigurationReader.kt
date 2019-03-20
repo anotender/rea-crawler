@@ -5,20 +5,18 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
-import pl.edu.agh.rea.crawler.configuration.properties.VendorConfigurationProperties
+import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
 import java.net.URL
 import kotlin.system.exitProcess
 
 @Component
-class ConfigurationProvider(@Value("\${spring.profiles.active}") private val profile: String) {
+class ConfigurationReader(@Value("\${spring.profiles.active}") private val profile: String) {
 
     companion object {
-        private val LOGGER = LoggerFactory.getLogger(ConfigurationProvider::class.java)
+        private val LOGGER = LoggerFactory.getLogger(ConfigurationReader::class.java)
     }
 
-    val vendorConfigurationProperties: VendorConfigurationProperties = readVendorConfigurationProperties()
-
-    private fun readVendorConfigurationProperties(): VendorConfigurationProperties {
+    fun readVendorConfiguration(): VendorConfiguration {
         val configurationFileUrl = getConfigurationFileUrlForVendor()
 
         if (configurationFileUrl == null) {
@@ -29,9 +27,9 @@ class ConfigurationProvider(@Value("\${spring.profiles.active}") private val pro
         }
 
         LOGGER.info("Reading configuration for profile $profile from $configurationFileUrl")
-        val vendorConfigurationProperties: VendorConfigurationProperties = jacksonObjectMapper().readValue(configurationFileUrl)
-        LOGGER.info("The config is: $vendorConfigurationProperties")
-        return vendorConfigurationProperties
+        val vendorConfiguration: VendorConfiguration = jacksonObjectMapper().readValue(configurationFileUrl)
+        LOGGER.info("The config is: $vendorConfiguration")
+        return vendorConfiguration
     }
 
     private fun getConfigurationFileUrlForVendor(): URL? {

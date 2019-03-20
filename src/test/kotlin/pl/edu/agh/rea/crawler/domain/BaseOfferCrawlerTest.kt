@@ -24,6 +24,6 @@ abstract class BaseOfferCrawlerTest(vendorName: String) : BaseCrawlerTest(vendor
 
     protected abstract fun getTestParameters(): Map<String, Offer>
 
-    private fun getOfferCrawler(): OfferCrawler = OfferCrawler(getConfigurationProvider(), HtmlCleaner())
+    private fun getOfferCrawler(): OfferCrawler = OfferCrawler(getVendorConfiguration(), HtmlCleaner())
 
 }
