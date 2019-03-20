@@ -12,6 +12,7 @@ data class VendorConfiguration(
         val areaXpath: String,
         val priceXpath: String,
         val numberOfRoomsXpath: String,
+        val titleXpath: String,
         val pageParam: String,
         val pagesToVisit: Int,
         val concurrentRequestsCount: Int,

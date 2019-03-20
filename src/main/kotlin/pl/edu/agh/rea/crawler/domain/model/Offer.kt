@@ -6,4 +6,5 @@ data class Offer(
         val imageUrl: String?,
         val price: Double?,
         val area: Double?,
-        val numberOfRooms: Int?)
+        val numberOfRooms: Int?,
+        val title: String?)

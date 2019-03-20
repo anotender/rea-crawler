@@ -12,7 +12,8 @@ class MorizonOfferCrawlerTest : BaseOfferCrawlerTest("morizon") {
                     "https://img2.staticmorizon.com.pl/thumbnail/aHR0cDovL2ltZy5tb3Jpem9uLnBsL3ptazc0OTMvOS96bWs3NDkzX21zXzI2NDglMjUyRjYxNjYlMjUyRk9NU18xLmpwZyN2PTFfMTE1ODMwMjAyMA==/832/468/2/kawalerka-na-sprzedaz-warszawa-wola-33-m-morizon-pl-3776.jpg",
                     290000.0,
                     32.5,
-                    1
+                    1,
+                    "Warszawa, Wola"
             ),
             getResourceUrl("offer_page2.html") to Offer(
                     getResourceUrl("offer_page2.html"),
@@ -20,12 +21,14 @@ class MorizonOfferCrawlerTest : BaseOfferCrawlerTest("morizon") {
                     "https://img1.staticmorizon.com.pl/thumbnail/aHR0cDovL2ltZy5tb3Jpem9uLnBsL2c0ODYyLzEvZzQ4NjJfbXdfOTk5OTEzMDg2MDBfMS5qcGcjdj0xXzEyMTQyNzkxMzc=/832/468/2/mieszkanie-do-wynajecia-warszawa-srodmiescie-polnocne-62-m.jpg",
                     9250.0,
                     62.0,
-                    2
+                    2,
+                    "Warszawa, Śródmieście, Śródmieście Północne, Złota"
             ),
             getResourceUrl("offer_page3.html") to Offer(
                     getResourceUrl("offer_page3.html"),
                     null,
                     "https://img3.staticmorizon.com.pl/thumbnail/aHR0cDovL21lZGlhLm1vcml6b24ucGwvaW1nL2Rld2Vsb3Blcnp5LzgzNDhfd2l6dWFsaXphY2phMS5qcGc=/1092/714/2/nowa-inwestycja-zachodnia-dabrowa-ul-zachodnia-morizon-pl.jpg",
+                    null,
                     null,
                     null,
                     null
@@ -36,7 +39,8 @@ class MorizonOfferCrawlerTest : BaseOfferCrawlerTest("morizon") {
                     "https://img1.staticmorizon.com.pl/thumbnail/aHR0cDovL21lZGlhLmRiLm1vcml6b24ucGwvMC8xLzAvNy80LzE1MjgwNTEwNzQvMjMwMzg5OC5pbWc=/832/468/2/mieszkanie-na-sprzedaz-lodz-srodmiescie-41-m-morizon-pl-1579.jpg",
                     285000.0,
                     41.09,
-                    2
+                    2,
+                    "Łódź, Śródmieście, Radwańska 51"
             ),
             getResourceUrl("offer_page5.html") to Offer(
                     getResourceUrl("offer_page5.html"),
@@ -44,7 +48,8 @@ class MorizonOfferCrawlerTest : BaseOfferCrawlerTest("morizon") {
                     "https://staticmorizon.com.pl/images/placeholder/property-gallery.svg",
                     4999.0,
                     100.0,
-                    null
+                    null,
+                    "Warszawski Zachodni, Ożarów Mazowiecki, Duchnice"
             ),
             getResourceUrl("offer_page6.html") to Offer(
                     getResourceUrl("offer_page6.html"),
@@ -52,7 +57,8 @@ class MorizonOfferCrawlerTest : BaseOfferCrawlerTest("morizon") {
                     "https://img1.staticmorizon.com.pl/thumbnail/aHR0cDovL2ltZy5tb3Jpem9uLnBsL2FwYXJ0aDEvMi9hcGFydGgxX213Xzc1JTI1MkY3NTUxJTI1MkZPTVdfMS5qcGcjdj0xXzEyMzI3OTYzODU=/832/468/2/mieszkanie-do-wynajecia-krakow-stare-miasto-50-m-morizon-pl.jpg",
                     1900.0,
                     50.0,
-                    2
+                    2,
+                    "Kraków, Stare Miasto, al. Juliusza Słowackiego"
             ),
             getResourceUrl("offer_page7.html") to Offer(
                     getResourceUrl("offer_page7.html"),
@@ -60,7 +66,8 @@ class MorizonOfferCrawlerTest : BaseOfferCrawlerTest("morizon") {
                     "https://img2.staticmorizon.com.pl/thumbnail/aHR0cDovL2ltZy5tb3Jpem9uLnBsL2hvbWVicm9rZXIvNi9ob21lYnJva2VyX213XzM4NzgxN18xLmpwZyN2PTFfMTIzMjc5NjE0OA==/832/468/2/mieszkanie-do-wynajecia-gdansk-piecki-migowo-53-m-morizon-pl.jpg",
                     1700.0,
                     52.5,
-                    2
+                    2,
+                    "Gdańsk, Morena, Piekarnicza"
             )
     )
 

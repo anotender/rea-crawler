@@ -32,7 +32,8 @@ class OfferCrawler(private val vendorConfiguration: VendorConfiguration,
             getStringValue(offerPage, vendorConfiguration.imageXpath),
             getDoubleValue(offerPage, vendorConfiguration.priceXpath),
             getDoubleValue(offerPage, vendorConfiguration.areaXpath),
-            getIntValue(offerPage, vendorConfiguration.numberOfRoomsXpath)
+            getIntValue(offerPage, vendorConfiguration.numberOfRoomsXpath),
+            getStringValue(offerPage, vendorConfiguration.titleXpath)
     )
 
     private fun getIntValue(document: Document, xPath: String): Int? {

@@ -7,6 +7,7 @@
   "areaXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[4]/em",
   "priceXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[1]/em",
   "numberOfRoomsXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[5]/em",
+  "titleXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/div/div[1]/h1/strong",
   "pageParam": "?page=",
   "pagesToVisit": 5,
   "concurrentRequestsCount": 10,
