@@ -13,12 +13,11 @@ abstract class BaseOfferCrawlerTest(vendorName: String) : BaseCrawlerTest(vendor
     @JvmField
     val softly: JUnitSoftAssertions = JUnitSoftAssertions()
 
+    private val offerCrawler: OfferCrawler = OfferCrawler(getVendorConfiguration(), HtmlCleaner())
+
     @Test
     fun shouldReturnOfferWithCorrectValuesForGivenPage() {
         for ((offerPageUrl, expectedOffer) in getTestParameters()) {
-            //given
-            val offerCrawler = getOfferCrawler()
-
             //when
             val offer = runBlocking { offerCrawler.fetch(offerPageUrl) }
 
@@ -28,7 +27,5 @@ abstract class BaseOfferCrawlerTest(vendorName: String) : BaseCrawlerTest(vendor
     }
 
     protected abstract fun getTestParameters(): Map<String, Offer>
-
-    private fun getOfferCrawler(): OfferCrawler = OfferCrawler(getVendorConfiguration(), HtmlCleaner())
 
 }
