@@ -15,7 +15,7 @@ class CrawlingConfiguration {
     fun htmlCleaner(): HtmlCleaner = HtmlCleaner()
 
     @Bean
-    fun db(): DB = DBMaker.fileDB("database.db").make()
+    fun visitedUrlsDb(): DB = DBMaker.fileDB("database.db").make()
 
     @Bean
     fun urlsToScrap(): MutableList<String> = mutableListOf()

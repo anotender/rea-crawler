@@ -4,15 +4,15 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import pl.edu.agh.rea.crawler.domain.sender.OfferSender
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
 import pl.edu.agh.rea.crawler.domain.scraper.OfferScraper
+import pl.edu.agh.rea.crawler.domain.sender.OfferSender
 
 @Component
 class OfferCrawler(private val vendorConfiguration: VendorConfiguration,
                    private val urlsToScrap: MutableList<String>,
                    private val offerScraper: OfferScraper,
-                   private val offerSender: OfferSender) : Crawler {
+                   private val offerSenders: List<OfferSender>) : Crawler {
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(OfferCrawler::class.java)
@@ -37,7 +37,7 @@ class OfferCrawler(private val vendorConfiguration: VendorConfiguration,
 
     private fun processUrl(url: String) = GlobalScope.launch {
         val offer = offerScraper.scrap(url)
-        offerSender.sendOffer(offer)
+        offerSenders.forEach { it.invoke(offer) }
     }
 
 }
