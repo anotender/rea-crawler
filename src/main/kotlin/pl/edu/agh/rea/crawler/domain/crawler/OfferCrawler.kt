@@ -1,21 +1,21 @@
-package pl.edu.agh.rea.crawler.configuration.scheduler.job
+package pl.edu.agh.rea.crawler.domain.crawler
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import pl.edu.agh.rea.crawler.configuration.kafka.producer.OfferSender
+import pl.edu.agh.rea.crawler.domain.sender.OfferSender
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
-import pl.edu.agh.rea.crawler.domain.OfferCrawler
+import pl.edu.agh.rea.crawler.domain.scraper.OfferScraper
 
 @Component
-class OfferCrawlerJob(private val vendorConfiguration: VendorConfiguration,
-                      private val urlsToScrap: MutableList<String>,
-                      private val offerCrawler: OfferCrawler,
-                      private val offerSender: OfferSender) : CrawlerJob {
+class OfferCrawler(private val vendorConfiguration: VendorConfiguration,
+                   private val urlsToScrap: MutableList<String>,
+                   private val offerScraper: OfferScraper,
+                   private val offerSender: OfferSender) : Crawler {
 
     companion object {
-        private val LOGGER = LoggerFactory.getLogger(OfferCrawlerJob::class.java)
+        private val LOGGER = LoggerFactory.getLogger(OfferCrawler::class.java)
     }
 
     override fun run() {
@@ -36,7 +36,7 @@ class OfferCrawlerJob(private val vendorConfiguration: VendorConfiguration,
     }
 
     private fun processUrl(url: String) = GlobalScope.launch {
-        val offer = offerCrawler.fetch(url)
+        val offer = offerScraper.scrap(url)
         offerSender.sendOffer(offer)
     }
 

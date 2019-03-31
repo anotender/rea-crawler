@@ -1,9 +1,9 @@
-package pl.edu.agh.rea.crawler.domain.otodom
+package pl.edu.agh.rea.crawler.domain.scraper.otodom
 
-import pl.edu.agh.rea.crawler.domain.BaseOfferCrawlerTest
+import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferScraperTest
 import pl.edu.agh.rea.crawler.domain.model.Offer
 
-class OtoDomOfferCrawlerTest : BaseOfferCrawlerTest("otodom") {
+class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
 
     override fun getTestParameters(): Map<String, Offer> = mapOf(
             getResourceUrl("offer_page1.html") to Offer(

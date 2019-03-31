@@ -1,9 +1,9 @@
-package pl.edu.agh.rea.crawler.domain.morizon
+package pl.edu.agh.rea.crawler.domain.scraper.morizon
 
-import pl.edu.agh.rea.crawler.domain.BaseOfferCrawlerTest
+import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferScraperTest
 import pl.edu.agh.rea.crawler.domain.model.Offer
 
-class MorizonOfferCrawlerTest : BaseOfferCrawlerTest("morizon") {
+class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
 
     override fun getTestParameters(): Map<String, Offer> = mapOf(
             getResourceUrl("offer_page1.html") to Offer(

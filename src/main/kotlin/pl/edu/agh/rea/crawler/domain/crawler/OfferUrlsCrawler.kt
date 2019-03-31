@@ -1,4 +1,4 @@
-package pl.edu.agh.rea.crawler.configuration.scheduler.job
+package pl.edu.agh.rea.crawler.domain.crawler
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -6,18 +6,18 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import pl.edu.agh.rea.crawler.configuration.properties.PageConfiguration
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
-import pl.edu.agh.rea.crawler.domain.OfferUrlsCrawler
+import pl.edu.agh.rea.crawler.domain.scraper.OfferUrlsScraper
 import pl.edu.agh.rea.crawler.domain.store.VisitedSitesStore
 import java.lang.Thread.sleep
 
 @Component
-class OfferUrlsCrawlerJob(private val vendorConfiguration: VendorConfiguration,
-                          private val offerUrlsCrawler: OfferUrlsCrawler,
-                          private val urlsToScrap: MutableList<String>,
-                          private val visitedSitesStore: VisitedSitesStore) : CrawlerJob {
+class OfferUrlsCrawler(private val vendorConfiguration: VendorConfiguration,
+                       private val offerUrlsScraper: OfferUrlsScraper,
+                       private val urlsToScrap: MutableList<String>,
+                       private val visitedSitesStore: VisitedSitesStore) : Crawler {
 
     companion object {
-        private val LOGGER = LoggerFactory.getLogger(OfferUrlsCrawlerJob::class.java)
+        private val LOGGER = LoggerFactory.getLogger(OfferUrlsCrawler::class.java)
     }
 
     override fun run() {
@@ -32,8 +32,8 @@ class OfferUrlsCrawlerJob(private val vendorConfiguration: VendorConfiguration,
     }
 
     private fun scrapPage(pageConfiguration: PageConfiguration, counter: Int) = GlobalScope.launch {
-        offerUrlsCrawler
-                .fetch(prepareUrlToScrapOfferUrlsFrom(pageConfiguration, counter))
+        offerUrlsScraper
+                .scrap(prepareUrlToScrapOfferUrlsFrom(pageConfiguration, counter))
                 .filter { !visitedSitesStore.contains(it) }
                 .forEach { urlsToScrap.add(it) }
     }

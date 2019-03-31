@@ -1,8 +1,8 @@
-package pl.edu.agh.rea.crawler.domain.morizon
+package pl.edu.agh.rea.crawler.domain.scraper.morizon
 
-import pl.edu.agh.rea.crawler.domain.BaseOfferUrlsCrawlerTest
+import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferUrlsScraperTest
 
-class MorizonOfferUrlsCrawlerTest : BaseOfferUrlsCrawlerTest("morizon") {
+class MorizonOfferUrlsScraperTest : BaseOfferUrlsScraperTest("morizon") {
 
     override fun getExpectedUrls(): List<String> = listOf(
             "https://www.morizon.pl/oferta/sprzedaz-mieszkanie-krakow-mistrzejowice-73m2-mzn2032058697",

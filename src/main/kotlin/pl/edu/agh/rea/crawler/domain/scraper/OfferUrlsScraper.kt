@@ -1,4 +1,4 @@
-package pl.edu.agh.rea.crawler.domain
+package pl.edu.agh.rea.crawler.domain.scraper
 
 import org.htmlcleaner.HtmlCleaner
 import org.slf4j.LoggerFactory
@@ -8,14 +8,14 @@ import pl.edu.agh.rea.crawler.domain.extensions.cleanToDocument
 import pl.edu.agh.rea.crawler.domain.extensions.getMultipleStringValue
 
 @Component
-class OfferUrlsCrawler(private val vendorConfiguration: VendorConfiguration,
-                       private val htmlCleaner: HtmlCleaner) : Crawler<List<String>> {
+class OfferUrlsScraper(private val vendorConfiguration: VendorConfiguration,
+                       private val htmlCleaner: HtmlCleaner) : Scraper<List<String>> {
 
     companion object {
-        private val LOGGER = LoggerFactory.getLogger(OfferUrlsCrawler::class.java)
+        private val LOGGER = LoggerFactory.getLogger(OfferUrlsScraper::class.java)
     }
 
-    override suspend fun fetch(url: String): List<String> {
+    override suspend fun scrap(url: String): List<String> {
         LOGGER.info("Scraping offer urls from url $url")
         val offerUrls: List<String> = htmlCleaner
                 .cleanToDocument(url)

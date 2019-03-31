@@ -1,9 +1,9 @@
-package pl.edu.agh.rea.crawler.domain
+package pl.edu.agh.rea.crawler.domain.scraper
 
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
 import pl.edu.agh.rea.crawler.configuration.provider.ConfigurationReader
 
-abstract class BaseCrawlerTest(private val vendorName: String) {
+abstract class BaseScraperTest(private val vendorName: String) {
 
     protected fun getResourceUrl(resourceName: String): String = this.javaClass.getResource("/$vendorName/$resourceName").toString()
 

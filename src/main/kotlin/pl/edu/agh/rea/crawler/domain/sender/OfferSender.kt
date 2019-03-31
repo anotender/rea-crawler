@@ -1,4 +1,4 @@
-package pl.edu.agh.rea.crawler.configuration.kafka.producer
+package pl.edu.agh.rea.crawler.domain.sender
 
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.core.KafkaTemplate
