@@ -1,0 +1,37 @@
+{
+  "name": "domiporta",
+  "baseUrl": "https://www.domiporta.pl",
+  "offerUrlXpath": "//*[@id=\"app\"]/main/div/div/div/div[2]/div[1]/div[1]/ul/li/article/a/@href",
+  "addressXpath": "//*[@id=\"temp\"]/section[2]/div[2]/dl[dt[contains(text(), \"Lokalizacja\")]]/dd",
+  "imageXpath": "//*[@id=\"originalPic\"]/@src",
+  "areaXpath": "//*[@id=\"temp\"]/section[2]/div[2]/dl[dt[contains(text(), \"Powierzchnia całkowita\")]]/dd/text()",
+  "priceXpath": "//*[@id=\"temp\"]/section[2]/div[2]/dl[dt[contains(text(), \"Cena\")]]/dd",
+  "numberOfRoomsXpath": "//*[@id=\"temp\"]/section[2]/div[2]/dl[dt[contains(text(), \"Liczba pokoi\")]]/dd",
+  "titleXpath": "//*[@id=\"temp\"]/section[1]/header/div/div[1]/h1/span[1]",
+  "pageParam": "&PageNumber=",
+  "pagesToVisit": 5,
+  "concurrentRequestsCount": 10,
+  "requestDelay": 30000,
+  "pages": [
+    {
+      "offerType": "RENT",
+      "propertyType": "HOUSE",
+      "url": "/dom/wynajme?RowsPerPage=36"
+    },
+    {
+      "offerType": "RENT",
+      "propertyType": "FLAT",
+      "url": "/mieszkanie/wynajme?RowsPerPage=36"
+    },
+    {
+      "offerType": "SELL",
+      "propertyType": "FLAT",
+      "url": "/mieszkanie/sprzedam?RowsPerPage=36"
+    },
+    {
+      "offerType": "SELL",
+      "propertyType": "HOUSE",
+      "url": "/dom/sprzedam?RowsPerPage=36"
+    }
+  ]
+}

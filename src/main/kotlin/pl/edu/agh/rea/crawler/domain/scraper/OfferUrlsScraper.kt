@@ -20,8 +20,14 @@ class OfferUrlsScraper(private val vendorConfiguration: VendorConfiguration,
         val offerUrls: List<String> = htmlCleaner
                 .cleanToDocument(url)
                 .getMultipleStringValue(vendorConfiguration.offerUrlXpath)
+                .map { addVendorBaseUrlIfNeeded(it) }
         LOGGER.info("Scraped ${offerUrls.size} offer urls")
         return offerUrls
+    }
+
+    private fun addVendorBaseUrlIfNeeded(url: String) = when (url.contains(vendorConfiguration.baseUrl)) {
+        true -> url
+        false -> vendorConfiguration.baseUrl + url
     }
 
 }

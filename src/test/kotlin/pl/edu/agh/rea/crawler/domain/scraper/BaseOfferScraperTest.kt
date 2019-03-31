@@ -22,10 +22,20 @@ abstract class BaseOfferScraperTest(vendorName: String) : BaseScraperTest(vendor
             val offer = runBlocking { offerScraper.scrap(offerPageUrl) }
 
             //then
-            softly.assertThat(offer).isEqualTo(expectedOffer)
+            thenOfferHasExpectedValues(offer, expectedOffer)
         }
     }
 
     protected abstract fun getTestParameters(): Map<String, Offer>
+
+    private fun thenOfferHasExpectedValues(actualOffer: Offer, expectedOffer: Offer) {
+        softly.assertThat(actualOffer.offerUrl).isEqualTo(expectedOffer.offerUrl)
+        softly.assertThat(actualOffer.title).isEqualTo(expectedOffer.title)
+        softly.assertThat(actualOffer.price).isEqualTo(expectedOffer.price)
+        softly.assertThat(actualOffer.imageUrl).isEqualTo(expectedOffer.imageUrl)
+        softly.assertThat(actualOffer.numberOfRooms).isEqualTo(expectedOffer.numberOfRooms)
+        softly.assertThat(actualOffer.address).isEqualTo(expectedOffer.address)
+        softly.assertThat(actualOffer.area).isEqualTo(expectedOffer.area)
+    }
 
 }
