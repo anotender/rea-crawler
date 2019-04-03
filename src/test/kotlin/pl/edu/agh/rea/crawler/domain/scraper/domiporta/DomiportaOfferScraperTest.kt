@@ -41,6 +41,24 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     41.49,
                     2,
                     "Mieszkanie dwupokojowe na sprzedaż"
+            ),
+            getResourceUrl("offer_page5.html") to Offer(
+                    getResourceUrl("offer_page5.html"),
+                    "Warszawa, Ursynów",
+                    "https://galeria.domiporta.pl/pictures/big/17/79/d6/d6797ee6d761242e89ae9edef11dde320c51f231/wynajme-dom-warszawa-ursynow.jpg",
+                    7900.0,
+                    300.0,
+                    7,
+                    "Dom na wynajem"
+            ),
+            getResourceUrl("offer_page6.html") to Offer(
+                    getResourceUrl("offer_page6.html"),
+                    "Łódź, Widzew, Mandarynkowa",
+                    "https://galeria.domiporta.pl/pictures/big/14/69/f6/f669472159d06412a489106ae8c1516880f94363/wynajme-dom-lodz-widzew.jpg",
+                    3800.0,
+                    142.0,
+                    4,
+                    "Dom na wynajem"
             )
     )
 
