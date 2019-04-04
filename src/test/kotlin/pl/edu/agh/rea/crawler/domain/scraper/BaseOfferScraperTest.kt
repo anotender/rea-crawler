@@ -43,6 +43,8 @@ abstract class BaseOfferScraperTest(vendorName: String) : BaseScraperTest(vendor
         softly.assertThat(actualOffer.numberOfRooms).isEqualTo(expectedOffer.numberOfRooms)
         softly.assertThat(actualOffer.address).isEqualTo(expectedOffer.address)
         softly.assertThat(actualOffer.area).isEqualTo(expectedOffer.area)
+        softly.assertThat(actualOffer.offerType).isEqualTo(expectedOffer.offerType)
+        softly.assertThat(actualOffer.propertyType).isEqualTo(expectedOffer.propertyType)
     }
 
 }
