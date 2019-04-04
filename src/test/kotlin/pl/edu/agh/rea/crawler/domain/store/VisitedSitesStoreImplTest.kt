@@ -45,9 +45,9 @@ class VisitedSitesStoreImplTest {
     fun shouldNotPutValueUnderGivenKeyWhenThereIsSuchKeyAlready() {
         //given
         val key = "KEY"
-        val firstDate = Date()
+        val firstDate = Date(1000L)
         store.put(key, firstDate)
-        val secondDate = Date()
+        val secondDate = Date(2000L)
 
         //when
         store.put(key, secondDate)
