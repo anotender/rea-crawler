@@ -1,6 +1,8 @@
 package pl.edu.agh.rea.crawler.domain.scraper.domiporta
 
 import pl.edu.agh.rea.crawler.domain.model.Offer
+import pl.edu.agh.rea.crawler.domain.model.OfferType
+import pl.edu.agh.rea.crawler.domain.model.PropertyType
 import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferScraperTest
 
 class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
@@ -13,7 +15,9 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     1100.0,
                     45.0,
                     2,
-                    "Mieszkanie dwupokojowe na wynajem"
+                    "Mieszkanie dwupokojowe na wynajem",
+                    OfferType.RENT,
+                    PropertyType.FLAT
             ),
             getResourceUrl("offer_page2.html") to Offer(
                     getResourceUrl("offer_page2.html"),
@@ -22,7 +26,9 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     13500.0,
                     720.0,
                     null,
-                    "Dom na wynajem"
+                    "Dom na wynajem",
+                    OfferType.RENT,
+                    PropertyType.HOUSE
             ),
             getResourceUrl("offer_page3.html") to Offer(
                     getResourceUrl("offer_page3.html"),
@@ -31,7 +37,9 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     6800.0,
                     200.0,
                     5,
-                    "Dom na wynajem"
+                    "Dom na wynajem",
+                    OfferType.RENT,
+                    PropertyType.HOUSE
             ),
             getResourceUrl("offer_page4.html") to Offer(
                     getResourceUrl("offer_page4.html"),
@@ -40,7 +48,9 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     184630.0,
                     41.49,
                     2,
-                    "Mieszkanie dwupokojowe na sprzedaż"
+                    "Mieszkanie dwupokojowe na sprzedaż",
+                    OfferType.SELL,
+                    PropertyType.FLAT
             ),
             getResourceUrl("offer_page5.html") to Offer(
                     getResourceUrl("offer_page5.html"),
@@ -49,7 +59,9 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     7900.0,
                     300.0,
                     7,
-                    "Dom na wynajem"
+                    "Dom na wynajem",
+                    OfferType.RENT,
+                    PropertyType.HOUSE
             ),
             getResourceUrl("offer_page6.html") to Offer(
                     getResourceUrl("offer_page6.html"),
@@ -58,7 +70,9 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     3800.0,
                     142.0,
                     4,
-                    "Dom na wynajem"
+                    "Dom na wynajem",
+                    OfferType.RENT,
+                    PropertyType.HOUSE
             )
     )
 

@@ -9,18 +9,19 @@ import pl.edu.agh.rea.crawler.domain.extensions.getMultipleStringValue
 
 @Component
 class OfferUrlsScraper(private val vendorConfiguration: VendorConfiguration,
-                       private val htmlCleaner: HtmlCleaner) : Scraper<List<String>> {
+                       private val htmlCleaner: HtmlCleaner) : Scraper<List<UrlToScrap>> {
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(OfferUrlsScraper::class.java)
     }
 
-    override suspend fun scrap(url: String): List<String> {
-        LOGGER.info("Scraping offer urls from url $url")
-        val offerUrls: List<String> = htmlCleaner
-                .cleanToDocument(url)
+    override suspend fun scrap(urlToScrap: UrlToScrap): List<UrlToScrap> {
+        LOGGER.info("Scraping offer urls from url $urlToScrap")
+        val offerUrls: List<UrlToScrap> = htmlCleaner
+                .cleanToDocument(urlToScrap.url)
                 .getMultipleStringValue(vendorConfiguration.offerUrlXpath)
                 .map { addVendorBaseUrlIfNeeded(it) }
+                .map { UrlToScrap(it, urlToScrap.offerType, urlToScrap.propertyType) }
         LOGGER.info("Scraped ${offerUrls.size} offer urls")
         return offerUrls
     }

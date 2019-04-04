@@ -1,7 +1,7 @@
 package pl.edu.agh.rea.crawler.domain.scraper
 
-interface Scraper<T> {
+interface Scraper<out T> {
 
-    suspend fun scrap(url: String): T
+    suspend fun scrap(urlToScrap: UrlToScrap): T
 
 }

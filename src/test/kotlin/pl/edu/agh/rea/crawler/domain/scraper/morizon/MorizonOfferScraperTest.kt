@@ -1,7 +1,9 @@
 package pl.edu.agh.rea.crawler.domain.scraper.morizon
 
-import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferScraperTest
 import pl.edu.agh.rea.crawler.domain.model.Offer
+import pl.edu.agh.rea.crawler.domain.model.OfferType
+import pl.edu.agh.rea.crawler.domain.model.PropertyType
+import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferScraperTest
 
 class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
 
@@ -13,7 +15,9 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     290000.0,
                     32.5,
                     1,
-                    "Warszawa, Wola"
+                    "Warszawa, Wola",
+                    OfferType.RENT,
+                    PropertyType.FLAT
             ),
             getResourceUrl("offer_page2.html") to Offer(
                     getResourceUrl("offer_page2.html"),
@@ -22,7 +26,9 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     9250.0,
                     62.0,
                     2,
-                    "Warszawa, Śródmieście, Śródmieście Północne, Złota"
+                    "Warszawa, Śródmieście, Śródmieście Północne, Złota",
+                    OfferType.RENT,
+                    PropertyType.HOUSE
             ),
             getResourceUrl("offer_page3.html") to Offer(
                     getResourceUrl("offer_page3.html"),
@@ -31,7 +37,9 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     null,
                     null,
                     null,
-                    null
+                    null,
+                    OfferType.SELL,
+                    PropertyType.FLAT
             ),
             getResourceUrl("offer_page4.html") to Offer(
                     getResourceUrl("offer_page4.html"),
@@ -40,7 +48,9 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     285000.0,
                     41.09,
                     2,
-                    "Łódź, Śródmieście, Radwańska 51"
+                    "Łódź, Śródmieście, Radwańska 51",
+                    OfferType.RENT,
+                    PropertyType.FLAT
             ),
             getResourceUrl("offer_page5.html") to Offer(
                     getResourceUrl("offer_page5.html"),
@@ -49,7 +59,9 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     4999.0,
                     100.0,
                     null,
-                    "Warszawski Zachodni, Ożarów Mazowiecki, Duchnice"
+                    "Warszawski Zachodni, Ożarów Mazowiecki, Duchnice",
+                    OfferType.SELL,
+                    PropertyType.FLAT
             ),
             getResourceUrl("offer_page6.html") to Offer(
                     getResourceUrl("offer_page6.html"),
@@ -58,7 +70,9 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     1900.0,
                     50.0,
                     2,
-                    "Kraków, Stare Miasto, al. Juliusza Słowackiego"
+                    "Kraków, Stare Miasto, al. Juliusza Słowackiego",
+                    OfferType.RENT,
+                    PropertyType.HOUSE
             ),
             getResourceUrl("offer_page7.html") to Offer(
                     getResourceUrl("offer_page7.html"),
@@ -67,7 +81,9 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     1700.0,
                     52.5,
                     2,
-                    "Gdańsk, Morena, Piekarnicza"
+                    "Gdańsk, Morena, Piekarnicza",
+                    OfferType.SELL,
+                    PropertyType.HOUSE
             )
     )
 

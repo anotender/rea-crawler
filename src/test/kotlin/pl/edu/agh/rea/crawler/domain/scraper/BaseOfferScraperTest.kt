@@ -18,8 +18,15 @@ abstract class BaseOfferScraperTest(vendorName: String) : BaseScraperTest(vendor
     @Test
     fun shouldScrapOfferWithCorrectValuesFromGivenPage() {
         for ((offerPageUrl, expectedOffer) in getTestParameters()) {
+            //given
+            val urlToScrap = UrlToScrap(
+                    offerPageUrl,
+                    expectedOffer.offerType,
+                    expectedOffer.propertyType
+            )
+
             //when
-            val offer = runBlocking { offerScraper.scrap(offerPageUrl) }
+            val offer = runBlocking { offerScraper.scrap(urlToScrap) }
 
             //then
             thenOfferHasExpectedValues(offer, expectedOffer)

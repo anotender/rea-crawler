@@ -4,6 +4,8 @@ import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.BDDAssertions.then
 import org.htmlcleaner.HtmlCleaner
 import org.junit.Test
+import pl.edu.agh.rea.crawler.domain.model.OfferType
+import pl.edu.agh.rea.crawler.domain.model.PropertyType
 
 abstract class BaseOfferUrlsScraperTest(vendorName: String) : BaseScraperTest(vendorName) {
 
@@ -14,14 +16,18 @@ abstract class BaseOfferUrlsScraperTest(vendorName: String) : BaseScraperTest(ve
     @Test
     fun shouldReturnListOfUrlsForGivenPage() {
         //given
-        val offerUrlsPageUrl = getResourceUrl("offer_urls_page.html")
+        val urlToScrap = UrlToScrap(
+                getResourceUrl("offer_urls_page.html"),
+                OfferType.SELL,
+                PropertyType.HOUSE
+        )
 
         //when
-        val result = runBlocking { offerUrlsScraper.scrap(offerUrlsPageUrl) }
+        val result = runBlocking { offerUrlsScraper.scrap(urlToScrap) }
 
         //then
-        then(result)
-                .isNotNull
+        then(result).isNotNull
+        then(result.map(UrlToScrap::url))
                 .hasSameSizeAs(getExpectedUrls())
                 .hasSameElementsAs(getExpectedUrls())
     }
@@ -29,10 +35,14 @@ abstract class BaseOfferUrlsScraperTest(vendorName: String) : BaseScraperTest(ve
     @Test
     fun shouldReturnEmptyListForPageWithNoOffers() {
         //given
-        val offerUrlsPageUrl = getResourceUrl("offer_urls_empty_page.html")
+        val urlToScrap = UrlToScrap(
+                getResourceUrl("offer_urls_empty_page.html"),
+                OfferType.SELL,
+                PropertyType.HOUSE
+        )
 
         //when
-        val result = runBlocking { offerUrlsScraper.scrap(offerUrlsPageUrl) }
+        val result = runBlocking { offerUrlsScraper.scrap(urlToScrap) }
 
         //then
         then(result)

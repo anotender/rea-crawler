@@ -18,22 +18,24 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
         private val LOGGER = LoggerFactory.getLogger(OfferScraper::class.java)
     }
 
-    override suspend fun scrap(url: String): Offer {
-        LOGGER.info("Scraping offer from url $url")
-        val offerPage = htmlCleaner.cleanToDocument(url)
-        val offer = buildOffer(url, offerPage)
-        LOGGER.info("Scraped offer from url $url successfully")
+    override suspend fun scrap(urlToScrap: UrlToScrap): Offer {
+        LOGGER.info("Scraping offer from url $urlToScrap")
+        val offerPage = htmlCleaner.cleanToDocument(urlToScrap.url)
+        val offer = buildOffer(urlToScrap, offerPage)
+        LOGGER.info("Scraped offer from url $urlToScrap successfully")
         return offer
     }
 
-    private fun buildOffer(url: String, offerPage: Document): Offer = Offer(
-            url,
+    private fun buildOffer(urlToScrap: UrlToScrap, offerPage: Document): Offer = Offer(
+            urlToScrap.url,
             getStringValue(offerPage, vendorConfiguration.addressXpath),
             getStringValue(offerPage, vendorConfiguration.imageXpath),
             getDoubleValue(offerPage, vendorConfiguration.priceXpath),
             getDoubleValue(offerPage, vendorConfiguration.areaXpath),
             getIntValue(offerPage, vendorConfiguration.numberOfRoomsXpath),
-            getStringValue(offerPage, vendorConfiguration.titleXpath)
+            getStringValue(offerPage, vendorConfiguration.titleXpath),
+            urlToScrap.offerType,
+            urlToScrap.propertyType
     )
 
     private fun getIntValue(document: Document, xPath: String): Int? {
