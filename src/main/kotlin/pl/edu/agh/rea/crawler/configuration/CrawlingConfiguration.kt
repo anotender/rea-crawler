@@ -3,7 +3,6 @@ package pl.edu.agh.rea.crawler.configuration
 import org.htmlcleaner.HtmlCleaner
 import org.mapdb.DB
 import org.mapdb.DBMaker
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
@@ -16,10 +15,10 @@ class CrawlingConfiguration {
     fun htmlCleaner(): HtmlCleaner = HtmlCleaner()
 
     @Bean
-    fun db(@Value("\${spring.profiles.active}") profile: String): DB = DBMaker.fileDB("$profile.db").make()
+    fun visitedUrlsDb(): DB = DBMaker.fileDB("database.db").make()
 
     @Bean
-    fun urlsToScrap(): MutableList<String> = mutableListOf()
+    fun offerUrlsToScrap(): MutableList<UrlToScrap> = mutableListOf()
 
     @Bean
     fun vendorConfiguration(configurationReader: ConfigurationReader): VendorConfiguration = configurationReader.readVendorConfiguration()

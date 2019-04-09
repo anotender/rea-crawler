@@ -1,8 +1,8 @@
-package pl.edu.agh.rea.crawler.domain.otodom
+package pl.edu.agh.rea.crawler.domain.scraper.otodom
 
-import pl.edu.agh.rea.crawler.domain.BaseOfferUrlsCrawlerTest
+import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferUrlsScraperTest
 
-class OtoDomOfferUrlsCrawlerTest : BaseOfferUrlsCrawlerTest("otodom") {
+class OtoDomOfferUrlsScraperTest : BaseOfferUrlsScraperTest("otodom") {
 
     override fun getExpectedUrls(): List<String> = listOf(
             "https://www.otodom.pl/oferta/funkcjonalna-kawalerka-na-blisko-metra-slodowiec-ID3WVxi.html#14fcfe9f8e",

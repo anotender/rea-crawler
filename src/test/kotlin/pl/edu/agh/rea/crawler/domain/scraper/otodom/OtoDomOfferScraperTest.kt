@@ -1,9 +1,11 @@
-package pl.edu.agh.rea.crawler.domain.otodom
+package pl.edu.agh.rea.crawler.domain.scraper.otodom
 
-import pl.edu.agh.rea.crawler.domain.BaseOfferCrawlerTest
 import pl.edu.agh.rea.crawler.domain.model.Offer
+import pl.edu.agh.rea.crawler.domain.model.OfferType
+import pl.edu.agh.rea.crawler.domain.model.PropertyType
+import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferScraperTest
 
-class OtoDomOfferCrawlerTest : BaseOfferCrawlerTest("otodom") {
+class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
 
     override fun getTestParameters(): Map<String, Offer> = mapOf(
             getResourceUrl("offer_page1.html") to Offer(
@@ -13,7 +15,9 @@ class OtoDomOfferCrawlerTest : BaseOfferCrawlerTest("otodom") {
                     7900.0,
                     212.0,
                     5,
-                    "Nowo wykończony dom w Dawidach Bankowych"
+                    "Nowo wykończony dom w Dawidach Bankowych",
+                    OfferType.RENT,
+                    PropertyType.FLAT
             ),
             getResourceUrl("offer_page2.html") to Offer(
                     getResourceUrl("offer_page2.html"),
@@ -22,7 +26,9 @@ class OtoDomOfferCrawlerTest : BaseOfferCrawlerTest("otodom") {
                     7000.0,
                     150.0,
                     5,
-                    "Dom dla Pracowników/na firmę /ok.Kołobrzeskiej"
+                    "Dom dla Pracowników/na firmę /ok.Kołobrzeskiej",
+                    OfferType.RENT,
+                    PropertyType.HOUSE
             ),
             getResourceUrl("offer_page3.html") to Offer(
                     getResourceUrl("offer_page3.html"),
@@ -31,7 +37,9 @@ class OtoDomOfferCrawlerTest : BaseOfferCrawlerTest("otodom") {
                     257279.48,
                     43.98,
                     3,
-                    "Gdańsk Łostowice, Świętokrzyska Park"
+                    "Gdańsk Łostowice, Świętokrzyska Park",
+                    OfferType.SELL,
+                    PropertyType.FLAT
             ),
             getResourceUrl("offer_page4.html") to Offer(
                     getResourceUrl("offer_page4.html"),
@@ -40,7 +48,9 @@ class OtoDomOfferCrawlerTest : BaseOfferCrawlerTest("otodom") {
                     25000.0,
                     300.0,
                     4,
-                    "Unikalny Dom, Żoliborz Oficerski, Działka 800M2"
+                    "Unikalny Dom, Żoliborz Oficerski, Działka 800M2",
+                    OfferType.SELL,
+                    PropertyType.HOUSE
             )
     )
 
