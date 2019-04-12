@@ -1,5 +1,5 @@
 {
-  "name": "morizon",
+  "vendor": "MORIZON",
   "baseUrl": "https://www.morizon.pl",
   "offerUrlXpath": "//*[@id=\"contentPage\"]/div/div/div/div/section/div/div/div/div/section/header/a/@href",
   "addressXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/div/div[1]/h1/strong",

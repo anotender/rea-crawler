@@ -35,7 +35,8 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
             getIntValue(offerPage, vendorConfiguration.numberOfRoomsXpath),
             getStringValue(offerPage, vendorConfiguration.titleXpath),
             urlToScrap.offerType,
-            urlToScrap.propertyType
+            urlToScrap.propertyType,
+            vendorConfiguration.vendor
     )
 
     private fun getIntValue(document: Document, xPath: String): Int? {

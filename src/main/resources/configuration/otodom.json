@@ -1,5 +1,5 @@
 {
-  "name": "otodom",
+  "vendor": "OTODOM",
   "baseUrl": "https://www.otodom.pl",
   "offerUrlXpath": "//*[@id=\"body-container\"]/div/div/div[1]/div/article/@data-url",
   "addressXpath": "//*[@id=\"root\"]/div/article/header/div[1]/div/a",
