@@ -10,8 +10,8 @@
   "titleXpath": "//*[@id=\"temp\"]/section[1]/header/div/div[1]/h1/span[1]",
   "pageParam": "&PageNumber=",
   "pagesToVisit": 5,
-  "concurrentRequestsCount": 10,
-  "requestDelay": 30000,
+  "concurrentRequestsCount": 25,
+  "requestDelay": 20000,
   "pages": [
     {
       "offerType": "RENT",
