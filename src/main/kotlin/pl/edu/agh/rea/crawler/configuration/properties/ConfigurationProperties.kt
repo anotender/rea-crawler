@@ -2,9 +2,10 @@ package pl.edu.agh.rea.crawler.configuration.properties
 
 import pl.edu.agh.rea.crawler.domain.model.OfferType
 import pl.edu.agh.rea.crawler.domain.model.PropertyType
+import pl.edu.agh.rea.crawler.domain.model.Vendor
 
 data class VendorConfiguration(
-        val name: String,
+        val vendor: Vendor,
         val baseUrl: String,
         val offerUrlXpath: String,
         val addressXpath: String,

@@ -9,4 +9,5 @@ data class Offer(
         val numberOfRooms: Int?,
         val title: String?,
         val offerType: OfferType,
-        val propertyType: PropertyType)
+        val propertyType: PropertyType,
+        val vendor: Vendor)

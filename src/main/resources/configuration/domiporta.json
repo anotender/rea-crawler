@@ -1,5 +1,5 @@
 {
-  "name": "domiporta",
+  "vendor": "DOMIPORTA",
   "baseUrl": "https://www.domiporta.pl",
   "offerUrlXpath": "//*[@id=\"app\"]/main/div/div/div/div[2]/div[1]/div[1]/ul/li/article/a/@href",
   "addressXpath": "//*/dt[contains(text(), \"Lokalizacja:\")]/following::dd[1]",
