@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
 import pl.edu.agh.rea.crawler.configuration.provider.ConfigurationReader
+import pl.edu.agh.rea.crawler.domain.scraper.UrlToScrap
 
 @Configuration
 class CrawlingConfiguration {
