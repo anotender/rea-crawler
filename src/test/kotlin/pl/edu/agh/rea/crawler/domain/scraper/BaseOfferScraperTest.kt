@@ -1,7 +1,7 @@
 package pl.edu.agh.rea.crawler.domain.scraper
 
 import kotlinx.coroutines.runBlocking
-import org.assertj.core.api.JUnitSoftAssertions
+import org.assertj.core.api.JUnitBDDSoftAssertions
 import org.htmlcleaner.HtmlCleaner
 import org.junit.Rule
 import org.junit.Test
@@ -11,7 +11,7 @@ abstract class BaseOfferScraperTest(vendorName: String) : BaseScraperTest(vendor
 
     @Rule
     @JvmField
-    val softly: JUnitSoftAssertions = JUnitSoftAssertions()
+    val softly: JUnitBDDSoftAssertions = JUnitBDDSoftAssertions()
 
     private val offerScraper: OfferScraper = OfferScraper(getVendorConfiguration(), HtmlCleaner())
 
@@ -36,15 +36,16 @@ abstract class BaseOfferScraperTest(vendorName: String) : BaseScraperTest(vendor
     protected abstract fun getTestParameters(): Map<String, Offer>
 
     private fun thenOfferHasExpectedValues(actualOffer: Offer, expectedOffer: Offer) {
-        softly.assertThat(actualOffer.offerUrl).isEqualTo(expectedOffer.offerUrl)
-        softly.assertThat(actualOffer.title).isEqualTo(expectedOffer.title)
-        softly.assertThat(actualOffer.price).isEqualTo(expectedOffer.price)
-        softly.assertThat(actualOffer.imageUrl).isEqualTo(expectedOffer.imageUrl)
-        softly.assertThat(actualOffer.numberOfRooms).isEqualTo(expectedOffer.numberOfRooms)
-        softly.assertThat(actualOffer.address).isEqualTo(expectedOffer.address)
-        softly.assertThat(actualOffer.area).isEqualTo(expectedOffer.area)
-        softly.assertThat(actualOffer.offerType).isEqualTo(expectedOffer.offerType)
-        softly.assertThat(actualOffer.propertyType).isEqualTo(expectedOffer.propertyType)
+        softly.then(actualOffer.offerUrl).isEqualTo(expectedOffer.offerUrl)
+        softly.then(actualOffer.title).isEqualTo(expectedOffer.title)
+        softly.then(actualOffer.price).isEqualTo(expectedOffer.price)
+        softly.then(actualOffer.imageUrl).isEqualTo(expectedOffer.imageUrl)
+        softly.then(actualOffer.numberOfRooms).isEqualTo(expectedOffer.numberOfRooms)
+        softly.then(actualOffer.address).isEqualTo(expectedOffer.address)
+        softly.then(actualOffer.area).isEqualTo(expectedOffer.area)
+        softly.then(actualOffer.offerType).isEqualTo(expectedOffer.offerType)
+        softly.then(actualOffer.propertyType).isEqualTo(expectedOffer.propertyType)
+        softly.then(actualOffer.vendor).isEqualTo(expectedOffer.vendor)
     }
 
 }

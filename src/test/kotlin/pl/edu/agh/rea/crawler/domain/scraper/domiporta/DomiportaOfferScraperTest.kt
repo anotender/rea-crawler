@@ -80,6 +80,18 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     OfferType.RENT,
                     PropertyType.HOUSE,
                     Vendor.DOMIPORTA
+            ),
+            getResourceUrl("offer_page7.html") to Offer(
+                    getResourceUrl("offer_page7.html"),
+                    "Murcia, San Javier",
+                    "https://galeria.domiporta.pl/pictures/big/13/69/49/49693b41e68dd6146d0ee1c8fa7f6b8675ca91dc/sprzedam-dom-murcia.jpg",
+                    1_631_473.0,
+                    115.45,
+                    4,
+                    "Dom na sprzedaż",
+                    OfferType.SELL,
+                    PropertyType.HOUSE,
+                    Vendor.DOMIPORTA
             )
     )
 

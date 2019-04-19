@@ -30,7 +30,7 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
             urlToScrap.url,
             getStringValue(offerPage, vendorConfiguration.addressXpath),
             getStringValue(offerPage, vendorConfiguration.imageXpath),
-            getDoubleValue(offerPage, vendorConfiguration.priceXpath),
+            getPriceValue(offerPage, vendorConfiguration.priceXpath),
             getDoubleValue(offerPage, vendorConfiguration.areaXpath),
             getIntValue(offerPage, vendorConfiguration.numberOfRoomsXpath),
             getStringValue(offerPage, vendorConfiguration.titleXpath),
@@ -39,18 +39,35 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
             vendorConfiguration.vendor
     )
 
+    //FIXME all of the method below need refactor
+    private fun getPriceValue(document: Document, xPath: String): Double? {
+        val priceStringValue = getStringValue(document, xPath)
+        val euroIndex = priceStringValue?.indexOf("EUR")
+        if (euroIndex != null && euroIndex > 0) {
+            return priceStringValue
+                    .indexOf("EUR")
+                    .let {
+                        priceStringValue
+                                .substring(it + "EUR".length)
+                                .let { removeNonNumericCharactersFromString(it) }
+                                .toDouble()
+                    }
+        }
+        return priceStringValue
+                ?.let { removeNonNumericCharactersFromString(it) }
+                ?.toDouble()
+    }
+
     private fun getIntValue(document: Document, xPath: String): Int? {
-        return getStringValueWithoutNonNumericCharacters(document, xPath)?.toInt()
+        return getStringValue(document, xPath)
+                ?.let { removeNonNumericCharactersFromString(it) }
+                ?.toInt()
     }
 
     private fun getDoubleValue(document: Document, xPath: String): Double? {
-        return getStringValueWithoutNonNumericCharacters(document, xPath)?.toDouble()
-    }
-
-    private fun getStringValueWithoutNonNumericCharacters(document: Document, xPath: String): String? {
         return getStringValue(document, xPath)
-                ?.replace(Regex("[^0-9.,]"), "")
-                ?.replace(',', '.')
+                ?.let { removeNonNumericCharactersFromString(it) }
+                ?.toDouble()
     }
 
     private fun getStringValue(document: Document, xPath: String): String? {
@@ -58,6 +75,10 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
                 .trim()
                 .replace(Regex("\\s+"), " ")
         return if (stringValue.isEmpty()) null else stringValue
+    }
+
+    private fun removeNonNumericCharactersFromString(s: String): String {
+        return s.replace(Regex("[^0-9.,]"), "").replace(',', '.')
     }
 
 }
