@@ -56,6 +56,30 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     OfferType.SELL,
                     PropertyType.HOUSE,
                     Vendor.OTODOM
+            ),
+            getResourceUrl("offer_page5.html") to Offer(
+                    getResourceUrl("offer_page5.html"),
+                    "Wrocław, Widawa",
+                    "https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6InRqeGpwZGV0bXZ3ajEtQVBMIiwidyI6W3siZm4iOiJqMWozbzEzbTZiZ24xLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.mtELF3WDMm6Ykj9I7Uwdm80oMuzI9HfWiB3gFousdio/image;s=1280x1024;q=80",
+                    2900.0,
+                    84.0,
+                    4,
+                    "Piętro w domu jednorodzinnym- ogród, parking",
+                    OfferType.RENT,
+                    PropertyType.HOUSE,
+                    Vendor.OTODOM
+            ),
+            getResourceUrl("offer_page6.html") to Offer(
+                    getResourceUrl("offer_page6.html"),
+                    "Wrocław, dolnośląskie",
+                    "https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6IjZhdWN1MXhsMGRlbDMtQVBMIiwidyI6W3siZm4iOiJqMWozbzEzbTZiZ24xLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.iA-saCsz06E6kVe3zp-t-YSU2Fieagd-msxloTo2o1g/image;s=1280x1024;q=80",
+                    9500.0,
+                    310.0,
+                    8,
+                    "Dom na firmę It, biura,",
+                    OfferType.RENT,
+                    PropertyType.HOUSE,
+                    Vendor.OTODOM
             )
     )
 
