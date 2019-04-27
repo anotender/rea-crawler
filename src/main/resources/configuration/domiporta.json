@@ -7,10 +7,12 @@
   "areaXpath": "//*/dt[contains(text(), \"Powierzchnia całkowita:\")]/following::dd[1]/text()",
   "priceXpath": "//*/dt[contains(text(), \"Cena:\")]/following::dd[1]",
   "numberOfRoomsXpath": "//*/dt[contains(text(), \"Liczba pokoi:\")]/following::dd[1]",
+  "floorXpath": "//*/dt[contains(text(), \"Piętro:\")]/following::dd[1]",
+  "yearOfConstructionXpath": "//*/dt[contains(text(), \"Rok budowy:\")]/following::dd[1]",
   "titleXpath": "//*[@id=\"temp\"]/section[1]/header/div/div[1]/h1/span[1]",
   "pageParam": "&PageNumber=",
-  "pagesToVisit": 5,
-  "concurrentRequestsCount": 25,
+  "pagesToVisit": 10,
+  "concurrentRequestsCount": 30,
   "requestDelay": 20000,
   "pages": [
     {

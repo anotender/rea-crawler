@@ -7,10 +7,12 @@
   "areaXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[4]/em",
   "priceXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[1]/em",
   "numberOfRoomsXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/ul/li[5]/em",
+  "floorXpath": "//*[@id=\"propertyDetails\"]/div/section[1]/section[1]/section/table/tbody/tr/th[contains(text(), \"Piętro\")]/following::td[1]",
+  "yearOfConstructionXpath": "//*[@id=\"propertyDetails\"]/div/section[1]/section[1]/section/table/tbody/tr/th[contains(text(), \"Rok budowy\")]/following::td[1]",
   "titleXpath": "//*[@id=\"contentPage\"]/div[3]/div/div[1]/article/section[1]/div/header/section/div/div[1]/h1/strong",
   "pageParam": "?page=",
-  "pagesToVisit": 5,
-  "concurrentRequestsCount": 25,
+  "pagesToVisit": 10,
+  "concurrentRequestsCount": 30,
   "requestDelay": 20000,
   "pages": [
     {

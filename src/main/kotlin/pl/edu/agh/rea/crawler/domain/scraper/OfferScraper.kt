@@ -27,16 +27,18 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
     }
 
     private fun buildOffer(urlToScrap: UrlToScrap, offerPage: Document): Offer = Offer(
-            urlToScrap.url,
-            getStringValue(offerPage, vendorConfiguration.addressXpath),
-            getStringValue(offerPage, vendorConfiguration.imageXpath),
-            getPriceValue(offerPage, vendorConfiguration.priceXpath),
-            getDoubleValue(offerPage, vendorConfiguration.areaXpath),
-            getIntValue(offerPage, vendorConfiguration.numberOfRoomsXpath),
-            getStringValue(offerPage, vendorConfiguration.titleXpath),
-            urlToScrap.offerType,
-            urlToScrap.propertyType,
-            vendorConfiguration.vendor
+            offerUrl = urlToScrap.url,
+            address = getStringValue(offerPage, vendorConfiguration.addressXpath),
+            imageUrl = getStringValue(offerPage, vendorConfiguration.imageXpath),
+            price = getPriceValue(offerPage, vendorConfiguration.priceXpath),
+            area = getDoubleValue(offerPage, vendorConfiguration.areaXpath),
+            numberOfRooms = getIntValue(offerPage, vendorConfiguration.numberOfRoomsXpath),
+            floor = getFloor(offerPage, vendorConfiguration.floorXpath),
+            yearOfConstruction = getIntValue(offerPage, vendorConfiguration.yearOfConstructionXpath),
+            title = getStringValue(offerPage, vendorConfiguration.titleXpath),
+            offerType = urlToScrap.offerType,
+            propertyType = urlToScrap.propertyType,
+            vendor = vendorConfiguration.vendor
     )
 
     //FIXME all of the method below need refactor
@@ -56,6 +58,19 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
         return priceStringValue
                 ?.let { removeNonNumericCharactersFromString(it) }
                 ?.toDouble()
+    }
+
+    private fun getFloor(document: Document, xPath: String): Int? {
+        return getStringValue(document, xPath)
+                ?.substringBefore('/')
+                ?.let {
+                    if (it.contains("parter", true)) {
+                        return@let "0"
+                    } else {
+                        return@let removeNonNumericCharactersFromString(it)
+                    }
+                }
+                ?.toInt()
     }
 
     private fun getIntValue(document: Document, xPath: String): Int? {
