@@ -5,7 +5,7 @@
   "addressXpath": "//a[@href=\"#map\"]",
   "imageXpath": "//*[@id=\"root\"]/div/article/section/div[1]/div/div[1]/div/div[2]/div/div[2]/div/picture/img/@src",
   "areaXpath": "//*[@id=\"root\"]/div/article/div/div[1]/section[1]/div/ul/li[starts-with(text(), \"Powierzchnia:\")]/strong",
-  "priceXpath": "//*[@id=\"root\"]/div/article/header//*[contains(text(), \"zł\")]",
+  "priceXpath": "//*[@id=\"root\"]/div/article/header//div[contains(text(), \"zł\")]",
   "numberOfRoomsXpath": "//*[@id=\"root\"]/div/article/div/div[1]/section[1]/div/ul/li[starts-with(text(), \"Liczba pokoi:\")]/strong",
   "floorXpath": "//*[@id=\"root\"]/div/article/div/div[1]/section[1]/div/ul/li[starts-with(text(), \"Piętro:\")]/strong",
   "yearOfConstructionXpath": "//*[@id=\"root\"]/div/article/div/div[1]/section[1]/div/ul/li[starts-with(text(), \"Rok budowy:\")]/strong",

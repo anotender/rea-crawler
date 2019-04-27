@@ -106,6 +106,20 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     OfferType.RENT,
                     PropertyType.FLAT,
                     Vendor.OTODOM
+            ),
+            getResourceUrl("offer_page8.html") to Offer(
+                    getResourceUrl("offer_page8.html"),
+                    "Kraków, Krowodrza",
+                    "https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6IjZucGN0MGl3M2V3NjItQVBMIiwidyI6W3siZm4iOiJqMWozbzEzbTZiZ24xLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.EAay2pOPX5k4QOkpD870BuurZxFV5bFX693O6TwQIDY/image;s=1280x1024;q=80",
+                    2000.0,
+                    70.0,
+                    3,
+                    1,
+                    2004,
+                    "Mieszkanie w Krowodrzy 70 mkw za 2000 zł brutto!",
+                    OfferType.RENT,
+                    PropertyType.FLAT,
+                    Vendor.OTODOM
             )
     )
 
