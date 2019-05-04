@@ -21,7 +21,7 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     "Mieszkanie dwupokojowe na wynajem",
                     OfferType.RENT,
                     PropertyType.FLAT,
-                    Vendor.DOMIPORTA
+                    null, Vendor.DOMIPORTA
             ),
             getResourceUrl("offer_page2.html") to Offer(
                     getResourceUrl("offer_page2.html"),
@@ -35,7 +35,7 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     "Dom na wynajem",
                     OfferType.RENT,
                     PropertyType.HOUSE,
-                    Vendor.DOMIPORTA
+                    null, Vendor.DOMIPORTA
             ),
             getResourceUrl("offer_page3.html") to Offer(
                     getResourceUrl("offer_page3.html"),
@@ -49,7 +49,7 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     "Dom na wynajem",
                     OfferType.RENT,
                     PropertyType.HOUSE,
-                    Vendor.DOMIPORTA
+                    null, Vendor.DOMIPORTA
             ),
             getResourceUrl("offer_page4.html") to Offer(
                     getResourceUrl("offer_page4.html"),
@@ -63,7 +63,7 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     "Mieszkanie dwupokojowe na sprzedaż",
                     OfferType.SELL,
                     PropertyType.FLAT,
-                    Vendor.DOMIPORTA
+                    null, Vendor.DOMIPORTA
             ),
             getResourceUrl("offer_page5.html") to Offer(
                     getResourceUrl("offer_page5.html"),
@@ -77,7 +77,7 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     "Dom na wynajem",
                     OfferType.RENT,
                     PropertyType.HOUSE,
-                    Vendor.DOMIPORTA
+                    null, Vendor.DOMIPORTA
             ),
             getResourceUrl("offer_page6.html") to Offer(
                     getResourceUrl("offer_page6.html"),
@@ -91,7 +91,7 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     "Dom na wynajem",
                     OfferType.RENT,
                     PropertyType.HOUSE,
-                    Vendor.DOMIPORTA
+                    null, Vendor.DOMIPORTA
             ),
             getResourceUrl("offer_page7.html") to Offer(
                     getResourceUrl("offer_page7.html"),
@@ -105,7 +105,7 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     "Dom na sprzedaż",
                     OfferType.SELL,
                     PropertyType.HOUSE,
-                    Vendor.DOMIPORTA
+                    null, Vendor.DOMIPORTA
             ),
             getResourceUrl("offer_page8.html") to Offer(
                     getResourceUrl("offer_page8.html"),
@@ -119,7 +119,7 @@ class DomiportaOfferScraperTest : BaseOfferScraperTest("domiporta") {
                     "Mieszkanie dwupokojowe na sprzedaż \"NOWA KIELECKA\" Sosnowiec",
                     OfferType.SELL,
                     PropertyType.FLAT,
-                    Vendor.DOMIPORTA
+                    null, Vendor.DOMIPORTA
             )
     )
 

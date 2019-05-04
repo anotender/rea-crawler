@@ -8,7 +8,9 @@ import org.w3c.dom.Document
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
 import pl.edu.agh.rea.crawler.domain.extensions.cleanToDocument
 import pl.edu.agh.rea.crawler.domain.extensions.getSingleStringValue
+import pl.edu.agh.rea.crawler.domain.model.MarketType
 import pl.edu.agh.rea.crawler.domain.model.Offer
+import pl.edu.agh.rea.crawler.domain.model.OfferType
 
 @Component
 class OfferScraper(private val vendorConfiguration: VendorConfiguration,
@@ -36,12 +38,28 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
             floor = getFloor(offerPage, vendorConfiguration.floorXpath),
             yearOfConstruction = getIntValue(offerPage, vendorConfiguration.yearOfConstructionXpath),
             title = getStringValue(offerPage, vendorConfiguration.titleXpath),
+            marketType = getMarketType(offerPage, urlToScrap.offerType),
             offerType = urlToScrap.offerType,
             propertyType = urlToScrap.propertyType,
             vendor = vendorConfiguration.vendor
     )
 
-    //FIXME all of the method below need refactor
+    //FIXME all of the method below need refactor and extraction to separate classes
+    private fun getMarketType(document: Document, offerType: OfferType): MarketType? {
+        if (offerType == OfferType.RENT) {
+            return null
+        }
+        return vendorConfiguration.marketTypeXpath
+                ?.let { getStringValue(document, it) }
+                ?.let {
+                    return@let when {
+                        it.equals("pierwotny", true) -> MarketType.PRIMARY
+                        it.equals("wtórny", true) -> MarketType.SECONDARY
+                        else -> null
+                    }
+                }
+    }
+
     private fun getPriceValue(document: Document, xPath: String): Double? {
         val priceStringValue = getStringValue(document, xPath)
         val euroIndex = priceStringValue?.indexOf("EUR")

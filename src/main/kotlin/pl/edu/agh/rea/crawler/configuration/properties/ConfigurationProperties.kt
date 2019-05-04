@@ -15,6 +15,7 @@ data class VendorConfiguration(
         val numberOfRoomsXpath: String,
         val floorXpath: String,
         val yearOfConstructionXpath: String,
+        val marketTypeXpath: String?,
         val titleXpath: String,
         val pageParam: String,
         val pagesToVisit: Int,

@@ -12,4 +12,5 @@ data class Offer(
         val title: String?,
         val offerType: OfferType,
         val propertyType: PropertyType,
+        val marketType: MarketType?,
         val vendor: Vendor)

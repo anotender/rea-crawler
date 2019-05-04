@@ -1,9 +1,6 @@
 package pl.edu.agh.rea.crawler.domain.scraper.otodom
 
-import pl.edu.agh.rea.crawler.domain.model.Offer
-import pl.edu.agh.rea.crawler.domain.model.OfferType
-import pl.edu.agh.rea.crawler.domain.model.PropertyType
-import pl.edu.agh.rea.crawler.domain.model.Vendor
+import pl.edu.agh.rea.crawler.domain.model.*
 import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferScraperTest
 
 class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
@@ -21,6 +18,7 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     "Nowo wykończony dom w Dawidach Bankowych",
                     OfferType.RENT,
                     PropertyType.FLAT,
+                    null,
                     Vendor.OTODOM
             ),
             getResourceUrl("offer_page2.html") to Offer(
@@ -35,6 +33,7 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     "Dom dla Pracowników/na firmę /ok.Kołobrzeskiej",
                     OfferType.RENT,
                     PropertyType.HOUSE,
+                    null,
                     Vendor.OTODOM
             ),
             getResourceUrl("offer_page3.html") to Offer(
@@ -49,6 +48,7 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     "Gdańsk Łostowice, Świętokrzyska Park",
                     OfferType.SELL,
                     PropertyType.FLAT,
+                    MarketType.PRIMARY,
                     Vendor.OTODOM
             ),
             getResourceUrl("offer_page4.html") to Offer(
@@ -63,6 +63,7 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     "Unikalny Dom, Żoliborz Oficerski, Działka 800M2",
                     OfferType.SELL,
                     PropertyType.HOUSE,
+                    null,
                     Vendor.OTODOM
             ),
             getResourceUrl("offer_page5.html") to Offer(
@@ -77,6 +78,7 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     "Piętro w domu jednorodzinnym- ogród, parking",
                     OfferType.RENT,
                     PropertyType.HOUSE,
+                    null,
                     Vendor.OTODOM
             ),
             getResourceUrl("offer_page6.html") to Offer(
@@ -91,6 +93,7 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     "Dom na firmę It, biura,",
                     OfferType.RENT,
                     PropertyType.HOUSE,
+                    null,
                     Vendor.OTODOM
             ),
             getResourceUrl("offer_page7.html") to Offer(
@@ -105,6 +108,7 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     "3 osobne pokoje oddzielna kuchnia, blisko centrum",
                     OfferType.RENT,
                     PropertyType.FLAT,
+                    null,
                     Vendor.OTODOM
             ),
             getResourceUrl("offer_page8.html") to Offer(
@@ -119,6 +123,22 @@ class OtoDomOfferScraperTest : BaseOfferScraperTest("otodom") {
                     "Mieszkanie w Krowodrzy 70 mkw za 2000 zł brutto!",
                     OfferType.RENT,
                     PropertyType.FLAT,
+                    null,
+                    Vendor.OTODOM
+            ),
+            getResourceUrl("offer_page9.html") to Offer(
+                    getResourceUrl("offer_page9.html"),
+                    "Warszawa, Kamionek",
+                    "https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6InM4M21lb2VpejJoYTEtQVBMIiwidyI6W3siZm4iOiJqMWozbzEzbTZiZ24xLUFQTCIsInMiOiIxNCIsInAiOiIxMCwtMTAiLCJhIjoiMCJ9XX0.DubthZrhm5RuLKQt8IrNuAR0PXe4lQrzvxuQATujpf0/image;s=1280x1024;q=80",
+                    375_826.0,
+                    31.06,
+                    1,
+                    1,
+                    2020,
+                    "Nowe Apartamenty przy Pge Narodowy",
+                    OfferType.SELL,
+                    PropertyType.FLAT,
+                    MarketType.PRIMARY,
                     Vendor.OTODOM
             )
     )

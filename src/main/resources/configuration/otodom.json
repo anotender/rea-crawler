@@ -9,9 +9,10 @@
   "numberOfRoomsXpath": "//*[@id=\"root\"]/div/article/div/div[1]/section[1]/div/ul/li[starts-with(text(), \"Liczba pokoi:\")]/strong",
   "floorXpath": "//*[@id=\"root\"]/div/article/div/div[1]/section[1]/div/ul/li[starts-with(text(), \"Piętro:\")]/strong",
   "yearOfConstructionXpath": "//*[@id=\"root\"]/div/article/div/div[1]/section[1]/div/ul/li[starts-with(text(), \"Rok budowy:\")]/strong",
+  "marketTypeXpath": "//*[@id=\"root\"]/div/article/div/div[1]/section[1]/div/ul/li[starts-with(text(), \"Rynek:\")]/strong",
   "titleXpath": "//*[@id=\"root\"]/div/article/header/div[1]//h1",
   "pageParam": "&page=",
-  "pagesToVisit": 10,
+  "pagesToVisit": 30,
   "concurrentRequestsCount": 30,
   "requestDelay": 20000,
   "pages": [

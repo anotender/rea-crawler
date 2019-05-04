@@ -1,9 +1,6 @@
 package pl.edu.agh.rea.crawler.domain.scraper.morizon
 
-import pl.edu.agh.rea.crawler.domain.model.Offer
-import pl.edu.agh.rea.crawler.domain.model.OfferType
-import pl.edu.agh.rea.crawler.domain.model.PropertyType
-import pl.edu.agh.rea.crawler.domain.model.Vendor
+import pl.edu.agh.rea.crawler.domain.model.*
 import pl.edu.agh.rea.crawler.domain.scraper.BaseOfferScraperTest
 
 class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
@@ -21,6 +18,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Warszawa, Wola",
                     OfferType.RENT,
                     PropertyType.FLAT,
+                    null,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page2.html") to Offer(
@@ -35,6 +33,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Warszawa, Śródmieście, Śródmieście Północne, Złota",
                     OfferType.RENT,
                     PropertyType.HOUSE,
+                    null,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page3.html") to Offer(
@@ -49,6 +48,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     null,
                     OfferType.SELL,
                     PropertyType.FLAT,
+                    null,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page4.html") to Offer(
@@ -63,6 +63,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Łódź, Śródmieście, Radwańska 51",
                     OfferType.RENT,
                     PropertyType.FLAT,
+                    null,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page5.html") to Offer(
@@ -77,6 +78,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Warszawski Zachodni, Ożarów Mazowiecki, Duchnice",
                     OfferType.SELL,
                     PropertyType.FLAT,
+                    MarketType.SECONDARY,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page6.html") to Offer(
@@ -91,6 +93,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Kraków, Stare Miasto, al. Juliusza Słowackiego",
                     OfferType.RENT,
                     PropertyType.HOUSE,
+                    null,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page7.html") to Offer(
@@ -105,6 +108,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Gdańsk, Morena, Piekarnicza",
                     OfferType.SELL,
                     PropertyType.HOUSE,
+                    MarketType.SECONDARY,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page8.html") to Offer(
@@ -119,6 +123,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Warszawa, Praga-Północ, Warszawa, Praga-Północ, Szwedzka",
                     OfferType.SELL,
                     PropertyType.HOUSE,
+                    MarketType.PRIMARY,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page9.html") to Offer(
@@ -133,6 +138,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Warszawa, Ochota, Rakowiec, Leżajska",
                     OfferType.SELL,
                     PropertyType.FLAT,
+                    MarketType.SECONDARY,
                     Vendor.MORIZON
             )
     )
