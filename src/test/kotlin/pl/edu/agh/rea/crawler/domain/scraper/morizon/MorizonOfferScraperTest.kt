@@ -18,7 +18,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Warszawa, Wola",
                     OfferType.RENT,
                     PropertyType.FLAT,
-                    null,
+                    MarketType.SECONDARY,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page2.html") to Offer(
@@ -33,7 +33,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Warszawa, Śródmieście, Śródmieście Północne, Złota",
                     OfferType.RENT,
                     PropertyType.HOUSE,
-                    null,
+                    MarketType.SECONDARY,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page3.html") to Offer(
@@ -63,7 +63,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Łódź, Śródmieście, Radwańska 51",
                     OfferType.RENT,
                     PropertyType.FLAT,
-                    null,
+                    MarketType.SECONDARY,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page5.html") to Offer(
@@ -93,7 +93,7 @@ class MorizonOfferScraperTest : BaseOfferScraperTest("morizon") {
                     "Kraków, Stare Miasto, al. Juliusza Słowackiego",
                     OfferType.RENT,
                     PropertyType.HOUSE,
-                    null,
+                    MarketType.SECONDARY,
                     Vendor.MORIZON
             ),
             getResourceUrl("offer_page7.html") to Offer(

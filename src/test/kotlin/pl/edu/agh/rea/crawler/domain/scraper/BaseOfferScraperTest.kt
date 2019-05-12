@@ -5,6 +5,7 @@ import org.assertj.core.api.JUnitBDDSoftAssertions
 import org.htmlcleaner.HtmlCleaner
 import org.junit.Rule
 import org.junit.Test
+import pl.edu.agh.rea.crawler.configuration.ScrapingConfiguration
 import pl.edu.agh.rea.crawler.domain.model.Offer
 
 abstract class BaseOfferScraperTest(vendorName: String) : BaseScraperTest(vendorName) {
@@ -13,7 +14,7 @@ abstract class BaseOfferScraperTest(vendorName: String) : BaseScraperTest(vendor
     @JvmField
     val softly: JUnitBDDSoftAssertions = JUnitBDDSoftAssertions()
 
-    private val offerScraper: OfferScraper = OfferScraper(getVendorConfiguration(), HtmlCleaner())
+    private val offerScraper: OfferScraper = getOfferScraper()
 
     @Test
     fun shouldScrapOfferWithCorrectValuesFromGivenPage() {
@@ -75,6 +76,14 @@ abstract class BaseOfferScraperTest(vendorName: String) : BaseScraperTest(vendor
         softly.then(actualOffer.vendor)
                 .`as`("vendor for ${expectedOffer.offerUrl} is not correct")
                 .isEqualTo(expectedOffer.vendor)
+    }
+
+    private fun getOfferScraper(): OfferScraper {
+        return OfferScraper(
+                getVendorConfiguration(),
+                HtmlCleaner(),
+                ScrapingConfiguration().fieldExtractorMap(getVendorConfiguration())
+        )
     }
 
 }

@@ -1,20 +1,20 @@
 package pl.edu.agh.rea.crawler.domain.scraper
 
-import org.apache.commons.text.StringEscapeUtils
 import org.htmlcleaner.HtmlCleaner
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import org.w3c.dom.Document
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
 import pl.edu.agh.rea.crawler.domain.extensions.cleanToDocument
-import pl.edu.agh.rea.crawler.domain.extensions.getSingleStringValue
 import pl.edu.agh.rea.crawler.domain.model.MarketType
 import pl.edu.agh.rea.crawler.domain.model.Offer
-import pl.edu.agh.rea.crawler.domain.model.OfferType
+import pl.edu.agh.rea.crawler.domain.scraper.extractor.Extractor
+import pl.edu.agh.rea.crawler.domain.scraper.extractor.Field
 
 @Component
 class OfferScraper(private val vendorConfiguration: VendorConfiguration,
-                   private val htmlCleaner: HtmlCleaner) : Scraper<Offer> {
+                   private val htmlCleaner: HtmlCleaner,
+                   private val fieldExtractorMap: Map<Field, Extractor>) : Scraper<Offer> {
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(OfferScraper::class.java)
@@ -30,88 +30,35 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
 
     private fun buildOffer(urlToScrap: UrlToScrap, offerPage: Document): Offer = Offer(
             offerUrl = urlToScrap.url,
-            address = getStringValue(offerPage, vendorConfiguration.addressXpath),
-            imageUrl = getStringValue(offerPage, vendorConfiguration.imageXpath),
-            price = getPriceValue(offerPage, vendorConfiguration.priceXpath),
-            area = getDoubleValue(offerPage, vendorConfiguration.areaXpath),
-            numberOfRooms = getIntValue(offerPage, vendorConfiguration.numberOfRoomsXpath),
-            floor = getFloor(offerPage, vendorConfiguration.floorXpath),
-            yearOfConstruction = getIntValue(offerPage, vendorConfiguration.yearOfConstructionXpath),
-            title = getStringValue(offerPage, vendorConfiguration.titleXpath),
-            marketType = getMarketType(offerPage, urlToScrap.offerType),
+            address = getStringValue(Field.ADDRESS, offerPage),
+            imageUrl = getStringValue(Field.IMAGE, offerPage),
+            price = getDoubleValue(Field.PRICE, offerPage),
+            area = getDoubleValue(Field.AREA, offerPage),
+            numberOfRooms = getIntValue(Field.NUMBER_OF_ROOMS, offerPage),
+            floor = getIntValue(Field.FLOOR, offerPage),
+            yearOfConstruction = getIntValue(Field.YEAR_OF_CONSTRUCTION, offerPage),
+            title = getStringValue(Field.TITLE, offerPage),
+            marketType = getMarketType(Field.MARKET_TYPE, offerPage),
             offerType = urlToScrap.offerType,
             propertyType = urlToScrap.propertyType,
             vendor = vendorConfiguration.vendor
     )
 
-    //FIXME all of the method below need refactor and extraction to separate classes
-    private fun getMarketType(document: Document, offerType: OfferType): MarketType? {
-        if (offerType == OfferType.RENT) {
-            return null
-        }
-        return vendorConfiguration.marketTypeXpath
-                ?.let { getStringValue(document, it) }
-                ?.let {
-                    return@let when {
-                        it.equals("pierwotny", true) -> MarketType.PRIMARY
-                        it.equals("wtórny", true) -> MarketType.SECONDARY
-                        else -> null
-                    }
-                }
+    //FIXME czy można uniknąć rzutowania
+    private fun getStringValue(field: Field, offerPage: Document): String? {
+        return fieldExtractorMap[field]?.extract(offerPage) as String?
     }
 
-    private fun getPriceValue(document: Document, xPath: String): Double? {
-        val priceStringValue = getStringValue(document, xPath)
-        val euroIndex = priceStringValue?.indexOf("EUR")
-        if (euroIndex != null && euroIndex > 0) {
-            return priceStringValue
-                    .indexOf("EUR")
-                    .let {
-                        priceStringValue
-                                .substring(it + "EUR".length)
-                                .let { removeNonNumericCharactersFromString(it) }
-                                .toDouble()
-                    }
-        }
-        return priceStringValue
-                ?.let { removeNonNumericCharactersFromString(it) }
-                ?.toDouble()
+    private fun getDoubleValue(field: Field, offerPage: Document): Double? {
+        return fieldExtractorMap[field]?.extract(offerPage) as Double?
     }
 
-    private fun getFloor(document: Document, xPath: String): Int? {
-        return getStringValue(document, xPath)
-                ?.substringBefore('/')
-                ?.let {
-                    if (it.contains("parter", true)) {
-                        return@let "0"
-                    } else {
-                        return@let removeNonNumericCharactersFromString(it)
-                    }
-                }
-                ?.toInt()
+    private fun getIntValue(field: Field, offerPage: Document): Int? {
+        return fieldExtractorMap[field]?.extract(offerPage) as Int?
     }
 
-    private fun getIntValue(document: Document, xPath: String): Int? {
-        return getStringValue(document, xPath)
-                ?.let { removeNonNumericCharactersFromString(it) }
-                ?.toInt()
-    }
-
-    private fun getDoubleValue(document: Document, xPath: String): Double? {
-        return getStringValue(document, xPath)
-                ?.let { removeNonNumericCharactersFromString(it) }
-                ?.toDouble()
-    }
-
-    private fun getStringValue(document: Document, xPath: String): String? {
-        val stringValue: String = StringEscapeUtils.unescapeHtml4(document.getSingleStringValue(xPath))
-                .trim()
-                .replace(Regex("\\s+"), " ")
-        return if (stringValue.isEmpty()) null else stringValue
-    }
-
-    private fun removeNonNumericCharactersFromString(s: String): String {
-        return s.replace(Regex("[^0-9.,]"), "").replace(',', '.')
+    private fun getMarketType(field: Field, offerPage: Document): MarketType? {
+        return fieldExtractorMap[field]?.extract(offerPage) as MarketType?
     }
 
 }

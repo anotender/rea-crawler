@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import pl.edu.agh.rea.crawler.domain.model.Offer
 
-@Component
+//@Component
 class FirestoreOfferSender(private val db: Firestore) : OfferSender {
 
     companion object {
