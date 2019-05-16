@@ -14,7 +14,7 @@ import pl.edu.agh.rea.crawler.domain.scraper.extractor.Field
 @Component
 class OfferScraper(private val vendorConfiguration: VendorConfiguration,
                    private val htmlCleaner: HtmlCleaner,
-                   private val fieldExtractorMap: Map<Field, Extractor>) : Scraper<Offer> {
+                   private val fieldExtractorMap: Map<Field, Extractor<Any>>) : Scraper<Offer> {
 
     companion object {
         private val LOGGER = LoggerFactory.getLogger(OfferScraper::class.java)
@@ -44,7 +44,7 @@ class OfferScraper(private val vendorConfiguration: VendorConfiguration,
             vendor = vendorConfiguration.vendor
     )
 
-    //FIXME czy można uniknąć rzutowania
+    //FIXME czy można uniknąć rzutowania?
     private fun getStringValue(field: Field, offerPage: Document): String? {
         return fieldExtractorMap[field]?.extract(offerPage) as String?
     }

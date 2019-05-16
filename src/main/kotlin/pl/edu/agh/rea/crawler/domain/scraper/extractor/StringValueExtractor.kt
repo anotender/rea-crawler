@@ -4,7 +4,7 @@ import org.apache.commons.text.StringEscapeUtils
 import org.w3c.dom.Document
 import pl.edu.agh.rea.crawler.domain.extensions.getSingleStringValue
 
-class StringValueExtractor(private val xPath: String) : Extractor {
+class StringValueExtractor(private val xPath: String) : Extractor<String> {
 
     override fun extract(document: Document): String? {
         val stringValue: String = StringEscapeUtils.unescapeHtml4(document.getSingleStringValue(xPath))

@@ -3,10 +3,10 @@ package pl.edu.agh.rea.crawler.domain.scraper.extractor
 import org.w3c.dom.Document
 import pl.edu.agh.rea.crawler.domain.extensions.removeNonNumericCharacters
 
-class PriceExtractor(private val stringValueExtractor: Extractor) : Extractor {
+class PriceExtractor(private val stringValueExtractor: Extractor<String>) : Extractor<Double> {
 
     override fun extract(document: Document): Double? {
-        val priceStringValue = stringValueExtractor.extract(document) as String?
+        val priceStringValue = stringValueExtractor.extract(document)
         val euroIndex = priceStringValue?.indexOf("EUR")
         if (euroIndex != null && euroIndex > 0) {
             return priceStringValue

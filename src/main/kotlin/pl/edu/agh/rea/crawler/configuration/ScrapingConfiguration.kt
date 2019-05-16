@@ -4,13 +4,14 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.w3c.dom.Document
 import pl.edu.agh.rea.crawler.configuration.properties.VendorConfiguration
+import pl.edu.agh.rea.crawler.domain.model.MarketType
 import pl.edu.agh.rea.crawler.domain.scraper.extractor.*
 
 @Configuration
 class ScrapingConfiguration {
 
     @Bean
-    fun fieldExtractorMap(vendorConfiguration: VendorConfiguration): Map<Field, Extractor> {
+    fun fieldExtractorMap(vendorConfiguration: VendorConfiguration): Map<Field, Extractor<Any>> {
         return mapOf(
                 Field.TITLE to stringValueExtractor(vendorConfiguration.titleXpath),
                 Field.ADDRESS to stringValueExtractor(vendorConfiguration.addressXpath),
@@ -24,36 +25,36 @@ class ScrapingConfiguration {
         )
     }
 
-    private fun marketTypeExtractor(xPath: String?): Extractor {
-        if (xPath == null) {
-            return emptyExtractor()
+    private fun marketTypeExtractor(xPath: String?): Extractor<MarketType> {
+        return when (xPath) {
+            null -> emptyExtractor()
+            else -> MarketTypeExtractor(stringValueExtractor(xPath))
         }
-        return MarketTypeExtractor(stringValueExtractor(xPath))
     }
 
-    private fun floorExtractor(xPath: String): Extractor {
+    private fun floorExtractor(xPath: String): Extractor<Int> {
         return FloorExtractor(stringValueExtractor(xPath))
     }
 
-    private fun priceExtractor(xPath: String): Extractor {
+    private fun priceExtractor(xPath: String): Extractor<Double> {
         return PriceExtractor(stringValueExtractor(xPath))
     }
 
-    private fun intValueExtractor(xPath: String): Extractor {
+    private fun intValueExtractor(xPath: String): Extractor<Int> {
         return IntValueExtractor(stringValueExtractor(xPath))
     }
 
-    private fun doubleValueExtractor(xPath: String): Extractor {
+    private fun doubleValueExtractor(xPath: String): Extractor<Double> {
         return DoubleValueExtractor(stringValueExtractor(xPath))
     }
 
-    private fun stringValueExtractor(xPath: String): Extractor {
+    private fun stringValueExtractor(xPath: String): Extractor<String> {
         return StringValueExtractor(xPath)
     }
 
-    private fun emptyExtractor(): Extractor {
-        return object : Extractor {
-            override fun extract(document: Document): Any? {
+    private fun <T> emptyExtractor(): Extractor<T> {
+        return object : Extractor<T> {
+            override fun extract(document: Document): T? {
                 return null
             }
         }
