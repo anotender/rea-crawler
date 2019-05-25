@@ -8,8 +8,6 @@ COPY ${JAR_FILE} app.jar
 COPY rea-firestore.json rea-firestore.json
 
 #set environment variables
-ARG VENDOR
-ENV VENDOR ${VENDOR}
 ENV FIRESTORE_CREDENTIALS_PATH /rea-firestore.json
 ENV FIRESTORE_PROJECT_ID real-estate-aggregator-accf5
 
