@@ -12,8 +12,8 @@ import java.io.FileInputStream
 class FirestoreConfiguration {
 
     @Bean
-    fun firestoreDb(@Value("\${firestore.credentials.path}") credentialsFilePath: String,
-                    @Value("\${firestore.project.id}") projectId: String): Firestore {
+    fun firestoreDb(@Value("\${FIRESTORE_CREDENTIALS_PATH}") credentialsFilePath: String,
+                    @Value("\${FIRESTORE_PROJECT_ID}") projectId: String): Firestore {
         return FirestoreOptions
                 .getDefaultInstance()
                 .toBuilder()

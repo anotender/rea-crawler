@@ -17,7 +17,7 @@ class CrawlingConfiguration {
     fun htmlCleaner(): HtmlCleaner = HtmlCleaner()
 
     @Bean
-    fun visitedUrlsDb(@Value("\${spring.profiles.active}") profile: String): DB = DBMaker.fileDB("$profile.db").make()
+    fun visitedUrlsDb(@Value("\${VENDOR}") vendor: String): DB = DBMaker.fileDB("$vendor.db").make()
 
     @Bean
     fun offerUrlsToScrap(): MutableList<UrlToScrap> = mutableListOf()
