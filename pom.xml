@@ -31,6 +31,7 @@
         <spring.kafka.version>2.2.4.RELEASE</spring.kafka.version>
         <google.cloud.firestore.version>0.84.0-beta</google.cloud.firestore.version>
         <assertj.core.version>3.11.1</assertj.core.version>
+        <io.mockk.version>1.9.3</io.mockk.version>
     </properties>
 
     <dependencies>
@@ -96,6 +97,12 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertj.core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.mockk</groupId>
+            <artifactId>mockk</artifactId>
+            <version>${io.mockk.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
